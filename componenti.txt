@@ -1,0 +1,42 @@
+Header
+    -Registrazoine e Login
+
+Footer
+    -Dati footer
+
+Pagina Principale
+    -Breadcrumb
+    -Accesso a "Campagna", "Forum" o "Membri"  (membri da decidere, serve a cercare i giocatori con profilo pubblico)
+
+Campagne
+    -Breadcrumb
+    -Mostrare le campagne accessibili
+    -Accedere a una delle campagne
+    -Cercare campagne
+
+Campagna
+    -Breadcrumb
+    -Lista personaggi
+    -Accesso alla scheda di un personaggio
+    -Lista delle sessioni
+    -Apertura di una sessione
+    -Topic relativo alla campagna, con i vari commenti. Commentabilità decidibile dagli admin
+
+Scheda personaggio
+    -Vedere le varie stats e l'utente
+
+Sessione (può essere creata solo dal DM)
+    -Vedere i dettagli della sessione e la lista dei Logbook (modificabile solo dal DM)
+    -Accesso ad un Logbook (modificabile solo dal creatore)
+
+Forum
+    -Breadcrumb
+    -Mostrare i vari topic
+    -Accedere ad un particolare Topic
+
+Topic
+    -Breadcrumb
+    -Vedere i commenti degli utenti
+    -Se loggato, commentare
+
+Errori 403/404/500
