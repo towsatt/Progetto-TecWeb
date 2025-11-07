@@ -1,0 +1,10 @@
+Principali
+    -Nella pagina principale sono presenti le varie campagne a cui l'utente ha accesso
+    -Per la prova direi che login(admin) accede e modifica tutte, login(member) vede tutto e login(user) non vede nulla 
+    -Gerarchia a livello della singola campagna, non a livello di sito (per il sito gli utenti sono TUTTI uguali)
+    -Creazione e modifica di una campagna se admin. Aggiunta di membri con ruolo effettivo (member o admin) e descrittivo (Dungeon Master)
+    -Il profilo personale privato o pubblico (la gente può vedere il tuo profilo e le campagne a cui partecipi)
+    -In ciascuna campagna sono presenti i vari personaggi con le loro statistiche
+
+Opzionali
+    -Forum con tag (help, request), sia generali che relativi ad una campagna (quelli per la campagna possono essere aperti solo dagli admin, con permessi di scrittura variabili)

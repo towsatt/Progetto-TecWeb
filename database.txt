@@ -1,0 +1,17 @@
+Tutto sql classico, tranne personaggio
+
+{
+    ruolo: varchar,
+    vitalità: int,
+    livello: int,
+    ...
+    abilità: JSON
+    {
+        spell: [],
+        attacchi: []
+    },
+}
+
+Dobbiamo indicizzare i membri delle campagne per trovare quelli visibile
+
+link https://app.diagrams.net/#G1QhUHA_xySkol8S43g1QTA4GgOXVdZPKb
