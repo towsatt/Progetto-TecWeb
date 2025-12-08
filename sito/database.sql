@@ -8,7 +8,8 @@ CREATE TABLE users (
 
 
 CREATE TABLE campagna (
-    id_campagna     SERIAL PRIMARY KEY,
+    id_campagna     VARCHAR(20) PRIMARY KEY,
+    password        VARCHAR(20),
     descrizione     TEXT,
     dungeon_master  INTEGER NOT NULL REFERENCES users(id_user),
     pubblica        BOOLEAN DEFAULT FALSE

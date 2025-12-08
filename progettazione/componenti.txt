@@ -6,7 +6,10 @@ Footer
 
 Pagina Principale
     -Breadcrumb
-    -Accesso a "Campagna", "Forum" o "Membri"  (membri da decidere, serve a cercare i giocatori con profilo pubblico)
+    -Accesso a "Campagna", "Forum" o "Membri"  (membri da mettere solo se abbiamo tempo e voglia, serve a cercare i giocatori con profilo pubblico. Necessita della funzione "amici")
+
+Profilo utente
+    -Vedere i dettagli dell'utente e le campagne a cui partecipa 
 
 Campagne
     -Breadcrumb
@@ -16,11 +19,22 @@ Campagne
 
 Campagna
     -Breadcrumb
+    -Dati
     -Lista personaggi
     -Accesso alla scheda di un personaggio
     -Lista delle sessioni
     -Apertura di una sessione
     -Topic relativo alla campagna, con i vari commenti. Commentabilità decidibile dagli admin
+    -Eliminazione campagna
+    -Archiviazione campagna
+
+Creazione Campagna
+    -Campi dati per la creazine della campagna
+        -Nome
+        -Tipologia (Homebrew oppure Pre esistente)
+        -Durata (One shot o più sessioni)
+        -Membri inizali (scelti dal DM)
+        -Descrizione campagna
 
 Scheda personaggio
     -Vedere le varie stats e l'utente
