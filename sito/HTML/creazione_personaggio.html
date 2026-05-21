@@ -1,0 +1,229 @@
+<link rel="stylesheet" href="cr_pr_g.css">
+<head>
+    <title>Creazione personaggio</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Crea il tuo personaggio per Dungeons & Dragons con il nostro form di creazione. Scegli classe, razza, abilità e personalizza ogni dettaglio per vivere avventure epiche nel mondo di D&D.">
+    <meta name="keywords" content="D&D, Dungeons & Dragons, creazione personaggio, RPG, gioco di ruolo, classe, razza, abilità, personalizzazione">
+    <script src="./js/cr_per_g.js" async></script>
+</head>
+<body>
+    <h1>Creazione personaggio</h1>
+
+    <form action="crea_pers.php" method="POST" id="multi_step_form">
+
+        <!-- TAB 1: Nome, Classe, Razza -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Identità del personaggio</legend>
+
+                <div class="field-wrap">
+                    <label for="namech"><strong>Nome personaggio</strong> <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="text" id="namech" name="namech" required aria-required="true" placeholder="Es. Arathorn il Coraggioso">
+                </div>
+
+                <div class="form_group_affiancato">
+                    <fieldset>
+                        <legend>Classe:</legend>
+                        <div class="radio_item"><input id="barbaro"  name="classe" type="radio" value="barbaro"> <label for="barbaro">Barbaro</label></div>
+                        <div class="radio_item"><input id="bardo"    name="classe" type="radio" value="bardo">   <label for="bardo">Bardo</label></div>
+                        <div class="radio_item"><input id="chierico" name="classe" type="radio" value="chierico"><label for="chierico">Chierico</label></div>
+                        <div class="radio_item"><input id="druido"   name="classe" type="radio" value="druido">  <label for="druido">Druido</label></div>
+                        <div class="radio_item"><input id="guerriero"name="classe" type="radio" value="guerriero"><label for="guerriero">Guerriero</label></div>
+                        <div class="radio_item"><input id="ladro"    name="classe" type="radio" value="ladro">   <label for="ladro">Ladro</label></div>
+                        <div class="radio_item"><input id="mago"     name="classe" type="radio" value="mago">    <label for="mago">Mago</label></div>
+                        <div class="radio_item"><input id="monaco"   name="classe" type="radio" value="monaco">  <label for="monaco">Monaco</label></div>
+                        <div class="radio_item"><input id="paladino" name="classe" type="radio" value="paladino"><label for="paladino">Paladino</label></div>
+                        <div class="radio_item"><input id="ranger"   name="classe" type="radio" value="ranger">  <label for="ranger">Ranger</label></div>
+                        <div class="radio_item"><input id="stregone" name="classe" type="radio" value="stregone"><label for="stregone">Stregone</label></div>
+                        <div class="radio_item"><input id="warlock"  name="classe" type="radio" value="warlock"> <label for="warlock">Warlock</label></div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Razza:</legend>
+                        <div class="radio_item"><input id="elfo"      name="razza" type="radio" value="elfo">      <label for="elfo">Elfo</label></div>
+                        <div class="radio_item"><input id="hafling"   name="razza" type="radio" value="hafling">   <label for="hafling">Hafling</label></div>
+                        <div class="radio_item"><input id="umano"     name="razza" type="radio" value="umano">     <label for="umano">Umano</label></div>
+                        <div class="radio_item"><input id="dragonide" name="razza" type="radio" value="dragonide"> <label for="dragonide">Dragonide</label></div>
+                        <div class="radio_item"><input id="gnomo"     name="razza" type="radio" value="gnomo">     <label for="gnomo">Gnomo</label></div>
+                        <div class="radio_item"><input id="mezzelfo"  name="razza" type="radio" value="mezzelfo">  <label for="mezzelfo">Mezzelfo</label></div>
+                        <div class="radio_item"><input id="mezzorco"  name="razza" type="radio" value="mezzorco">  <label for="mezzorco">Mezzorco</label></div>
+                        <div class="radio_item"><input id="tiefling"  name="razza" type="radio" value="tiefling">  <label for="tiefling">Tiefling</label></div>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- TAB 2: Descrizione fisica -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Descrizione fisica</legend>
+                <div class="form_group_affiancato">
+                    <div class="field-wrap">
+                    <label for="eta"><strong>Età</strong>:</label>
+                    <input type="number" id="eta" name="eta" min="1" max="999">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="altezza"><strong>Altezza</strong> (cm):</label>
+                        <input type="number" id="altezza" name="altezza" min="1">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="peso"><strong>Peso</strong> (kg):</label>
+                        <input type="number" id="peso" name="peso" min="1">
+                    </div>
+                </div>
+                
+                <div class="field-wrap">
+                    <label for="occhi"><strong>Occhi</strong>:</label>
+                    <input type="text" id="occhi" name="occhi">
+                </div>
+                <div class="field-wrap">
+                    <label for="carnagione"><strong>Carnagione</strong>:</label>
+                    <input type="text" id="carnagione" name="carnagione">
+                </div>
+                <div class="field-wrap">
+                    <label for="capelli"><strong>Capelli</strong>:</label>
+                    <input type="text" id="capelli" name="capelli">
+                </div>
+                <div class="field-wrap">
+                    <label for="aspetto"><strong>Aspetto</strong>:</label>
+                    <textarea id="aspetto" name="aspetto" rows="4"></textarea>
+                </div>
+                <div class="field-wrap">
+                    <label for="aleorg"><strong>Alleati e organizzazione</strong>:</label>
+                    <textarea id="aleorg" name="aleorg" rows="4"></textarea>
+                </div>
+                <div class="field-wrap">
+                    <label for="storia"><strong>Storia</strong>:</label>
+                    <textarea id="storia" name="storia" rows="4"></textarea>
+                </div>
+                <div class="field-wrap">
+                    <label for="tesoro"><strong>Tesoro</strong>:</label>
+                    <textarea id="tesoro" name="tesoro" rows="4"></textarea>
+                </div>
+                <div class="field-wrap">
+                    <label for="lp"><strong>Competenze e linguaggi</strong>:</label>
+                    <textarea id="lp" name="lp" rows="4"></textarea>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- TAB 3: Statistiche -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Statistiche</legend>
+
+                <div class="affiancato">
+                    <div class="field-wrap">
+                        <label for="forza">Forza:</label>
+                        <input type="number" id="forza" name="forza" min="1" max="20">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="destrezza">Destrezza:</label>
+                        <input type="number" id="destrezza" name="destrezza" min="1" max="20">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="costit">Costituzione:</label>
+                        <input type="number" id="costit" name="costit" min="1" max="20">
+                    </div>
+                </div>
+                <div class="affiancato">
+                    <div class="field-wrap">
+                        <label for="intel">Intelligenza:</label>
+                        <input type="number" id="intel" name="intel" min="1" max="20">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="sagg">Saggezza:</label>
+                        <input type="number" id="sagg" name="sagg" min="1" max="20">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="carisma">Carisma:</label>
+                        <input type="number" id="carisma" name="carisma" min="1" max="20">
+                    </div>
+                </div>
+                <div class="form_group_affiancato">
+                    <div class="field-wrap">
+                    <label for="ispiraz">Ispirazione:</label>
+                    <input type="number" id="ispiraz" name="ispiraz" min="0">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="bdcomp">Bonus di competenza:</label>
+                        <input type="number" id="bdcomp" name="bdcomp">
+                    </div>
+                    <div class="field-wrap">
+                        <label for="percpas">Percezione passiva:</label>
+                        <input type="number" id="percpas" name="percpas" min="10">
+                    </div>
+                </div>
+                
+            </fieldset>
+        </div>
+
+        <!-- TAB 4: Equipaggiamento -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Equipaggiamento iniziale</legend>
+                <p class="tab-note">Verrà reso dinamico in base alla forza del personaggio.</p>
+                <div class="field-wrap">
+                    <label for="valuta"><strong>Valuta</strong>:</label>
+                    <input type="text" id="valuta" name="valuta">
+                </div>
+                <div class="field-wrap">
+                    <label for="tesoro2"><strong>Tesoro</strong>:</label>
+                    <input type="text" id="tesoro2" name="tesoro2">
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- TAB 5: Combattimento -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Punti vita e statistiche combattimento</legend>
+                <div class="field-wrap">
+                    <label for="clarm"><strong>Classe armatura</strong>:</label>
+                    <input type="text" id="clarm" name="clarm">
+                </div>
+                <p class="tab-note">Iniziativa: automatica (coincide con Destrezza).</p>
+                <div class="field-wrap">
+                    <label for="speed"><strong>Velocità (metri)</strong>:</label>
+                    <input type="number" id="speed" name="speed" min="0">
+                </div>
+                <div class="field-wrap">
+                    <label for="dadivita"><strong>Dadi vita (D10)</strong>:(es.2D10)</label>
+                    <input type="text" id="dadivita" name="dadivita">
+                </div>
+                <div class="field-wrap">
+                    <label for="maxptifer"><strong>Massimo punti ferita</strong>:</label>
+                    <input type="number" id="maxptifer" name="maxptifer" min="1">
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- TAB 6: Incantesimi -->
+        <div class="tab">
+            <fieldset class="tab-fieldset">
+                <legend>Incantesimi</legend>
+                <div class="field-wrap">
+                    <label for="incantesimi"><strong>Incantesimi</strong>:</label>
+                    <textarea id="incantesimi" name="incantesimi" rows="10"></textarea>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Navigazione -->
+        <div class="form-nav">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">&#8592; Precedente</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Successivo &#8594;</button>
+        </div>
+
+        <!-- Step indicator -->
+        <div class="step-indicator" role="navigation" aria-label="Avanzamento form">
+            <span class="step" aria-label="Step 1: Identità"></span>
+            <span class="step" aria-label="Step 2: Descrizione"></span>
+            <span class="step" aria-label="Step 3: Statistiche"></span>
+            <span class="step" aria-label="Step 4: Equipaggiamento"></span>
+            <span class="step" aria-label="Step 5: Combattimento"></span>
+            <span class="step" aria-label="Step 6: Incantesimi"></span>
+        </div>
+
+    </form>
+</body>
