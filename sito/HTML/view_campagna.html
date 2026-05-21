@@ -1,0 +1,110 @@
+<!DOCTYPE html> <!-- a -->
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Visualizzazione Campagna</title>
+        <meta name="description" content="placeholder">
+        <meta name="keywords" content="placeholder">
+        <link rel="stylesheet" href="styles.css" media="screen">
+    </head>
+    <body>
+
+        <header>
+             <nav id="menu">
+                <ul>
+                    <li lang="en"><a href="#home"><strong>Home</strong></a></li>
+                    <li><a href="#campagna"><strong>Campagna</strong></a></li>
+                    <li><a href="#forum"><strong>Forum</strong></a></li> 
+                    <li lang="en"><a href="#login"><strong>Login</strong></a></li>
+                </ul>
+             </nav>
+        </header>
+
+        <nav id="breadcrumb"> <!-- Mettere il giusto ordine di navigazione, cambiare visuali... nel titolo della campagna ?? -->
+            <ul>
+                <li lang="en"><a href="#home">Home</a></li>
+                <li><a href="#campagna">Campagna</a></li>
+                <li><strong>Visualizzazione Campagna</strong></li> <!-- strong indica che sei qua dentro, no link per link circolari -->
+            </ul> 
+        </nav>
+
+        <main>
+            <div id="buttons"> 
+                <button type="button" id="elimina"><strong>Elimina</strong></button> <!-- visibile solo da admin-->
+
+                <button type="button" id="modifica"><strong>Modifica</strong></button> <!-- sarebbe type="submit" ?? -->
+            </div>
+
+            <h1>Nome Campagna</h1> <!-- placeholder, da mettere poi lang="en" ??-->
+
+            <div id="dettagli">
+                <h2>Dettagli della Campagna</h2>
+                <dl>
+                    <dt><strong>Tipologia</strong></dt>
+                    <dd>Homebrew</dd> <!-- placeholder, da mettere poi lang="en" ??-->
+
+                    <dt><strong>Durata</strong></dt>
+                    <dd>One Shot</dd> <!-- placeholder, da mettere poi lang="en" ??-->
+
+                    <dt><strong>Codice Campagna</strong></dt>
+                    <dd>dg12bix</dd>
+
+                    <dt><strong lang="en">Password</strong></dt>
+                    <dd>password</dd>
+
+                    <dt><strong>Descrizione</strong></dt>
+                    <dd>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+                        In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. 
+                        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+                        Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</dd>
+                         <!-- descrizione dentro ad un dd ??-->
+                </dl>
+            </div>
+            
+            <div id="membri">
+                <button type="button"><strong>Invita</strong></button> 
+                <h2>Membri</h2>
+                <ul>
+                    <li>Alex - personaggio</li>
+                    <li>Arianna - personaggio</li>
+                    <li>Leonardo - personaggio</li>
+                    <li>Nicholas - master</li>
+                </ul>
+            </div>
+            
+            <div id="sessioni">
+                 <h2>Sessioni</h2>
+                 <ul>
+                    <li><a href="scheda_campagna.html">Sessione 1</a></li>
+                    <li>Sessione 2</li>
+                    <li>Sessione 3</li>
+                    <li>Sessione 4</li>
+                </ul>
+            </div>
+           
+        </main>
+
+        <footer> <!-- magari un'immagine logo a sinistra, a destra informazioni sui contatti -->
+            <div id="footer_container">
+                <div id="footer_titolo">
+                    <img id="logo" src="dnd_no_transparancy.png" alt="logo placeholder">
+                    <h3>Nome del sito penso</h3>
+                    <p>potrebbe essere una breve descrizione del sito</p>
+                </div>
+                <div id="footer_contatti">
+                    <p>E<strong>' possibile contattarci tramite:</strong></p>
+                    <ul>
+                        <li>mail@mail.mail</li>
+                        <li>+2131728312763</li>
+                        <li>linkedlksad</li>
+                        <li> x the everything app</li>
+                    </ul>
+                </div>    
+            </div>
+            <!--
+            <p>cosa va messo qua non mi ricordo immagini della correttezza tipo=??</p>
+            -->
+        </footer>
+
+    </body>
+</html>
