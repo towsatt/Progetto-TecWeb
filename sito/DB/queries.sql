@@ -1,0 +1,1 @@
+select * from utente where id_utente in (select utente from membro where codice_campagna = 'CAMP05_EBERR');
