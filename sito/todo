@@ -1,0 +1,18 @@
+connessione DB
+GET DB
+    - controllo codice campagna duplicato
+    - cerca membri nel DB
+POST DB
+    - inserimento campagna nel DB
+
+Invio inviti ai membri
+controllo dati inseriti
+    - dati validi
+    - No SQL injection
+
+Creazione campagna
+
+error handling
+    - gestione errori connessione DB
+    - gestione errori inserimento dati
+    - gestione errori invio inviti
