@@ -1,0 +1,94 @@
+<!DOCTYPE html> <!-- a -->
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Scheda Campagna</title>
+        <meta name="description" content="placeholder">
+        <meta name="keywords" content="placeholder">
+        <link rel="stylesheet" href="styles.css" media="screen"> 
+    </head>
+    <body>
+
+        <header> <!-- da aggiungere i link -->
+             <nav id="menu">
+                <ul> <!-- tenere lista dl(messa perchè non ha punti) ??-->
+                    <li lang="en"><a href="#home"><strong>Home</strong></a></li>
+                    <li><a href="#campagna"><strong>Campagna</strong></a></li>
+                    <li><a href="#forum"><strong>Forum</strong></a></li> 
+                    <li lang="en"><a href="#login"><strong>Area Personale</strong></a></li>
+                </ul>
+             </nav>
+        </header>
+
+        <nav id="breadcrumb"> <!-- Mettere il giusto ordine di navigazione, cambiare visuali... nel titolo della campagna ?? -->
+            <ul>
+                <li lang="en"><a href="#home">Home</a></li>
+                <li><a href="#campagna">Campagna</a></li>
+                <li><a href="view_campagna.html">Visualizzazione Campagna</a></li> 
+                <li><strong>Scheda Campagna</strong></li> <!-- strong indica che sei qua dentro, no link per link circolari -->
+            </ul> 
+        </nav>
+
+        <main>
+            <h1>Nome Campagna - Sessione 1</h1>
+            <div id="descrizione_sessione">
+                <button type="button"><strong>Modifica</strong></button> <!-- da cambiare da button ad un a/link ??, visibile solo ad admin-->
+                <h2>Descrizione della Sessione</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+                        In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. 
+                        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+                        Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+                        In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. 
+                        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+                        Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+                        In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. 
+                        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+                        Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+            </div>
+
+            <div id="pulsanti_logbook"> <!--cambiare nome id-->
+                <h2>Scheda del Personaggio</h2>
+                <ul> <!-- solo dm vede tutti, giocatore solo il proprio ?? -->
+                    <li>Scheda Personaggio - Personaggio Alex</li>
+                    <li>Scheda Personaggio - Personaggio Arianna</li>
+                    <li>Scheda Personaggio - Personaggio Leonardo</li>
+                </ul>
+            </div>
+
+            <ul id="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </main>
+
+        <footer> <!-- magari un'immagine logo a sinistra, a destra informazioni sui contatti -->
+            <div id="footer_container">
+                <div id="footer_titolo">
+                    <img id="logo" src="dnd_no_transparancy.png" alt="logo placeholder">
+                    <h3>Nome del sito penso</h3>
+                    <p>potrebbe essere una breve descrizione del sito</p>
+                </div>
+                <div id="footer_contatti">
+                    <p>E<strong>' possibile contattarci tramite:</strong></p>
+                    <ul>
+                        <li>mail@mail.mail</li>
+                        <li>+2131728312763</li>
+                        <li>linkedlksad</li>
+                        <li> x the everything app</li>
+                    </ul>
+                </div>    
+            </div>
+            <!--
+            <p>cosa va messo qua non mi ricordo immagini della correttezza tipo=??</p>
+            -->
+        </footer>
+
+    </body>
+</html>

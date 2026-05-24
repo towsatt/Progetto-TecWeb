@@ -1,11 +1,4 @@
 <link rel="stylesheet" href="cr_pr_g.css">
-<head>
-    <title>Creazione personaggio</title>
-    <meta charset="utf-8">
-    <meta name="description" content="Crea il tuo personaggio per Dungeons & Dragons con il nostro form di creazione. Scegli classe, razza, abilità e personalizza ogni dettaglio per vivere avventure epiche nel mondo di D&D.">
-    <meta name="keywords" content="D&D, Dungeons & Dragons, creazione personaggio, RPG, gioco di ruolo, classe, razza, abilità, personalizzazione">
-    <script src="./js/cr_per_g.js" async></script>
-</head>
 <body>
     <h1>Creazione personaggio</h1>
 
@@ -13,10 +6,10 @@
 
         <!-- TAB 1: Nome, Classe, Razza -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Identità del personaggio</legend>
 
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="namech"><strong>Nome personaggio</strong> <span class="required-mark" aria-hidden="true">*</span></label>
                     <input type="text" id="namech" name="namech" required aria-required="true" placeholder="Es. Arathorn il Coraggioso">
                 </div>
@@ -55,52 +48,52 @@
 
         <!-- TAB 2: Descrizione fisica -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Descrizione fisica</legend>
                 <div class="form_group_affiancato">
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                     <label for="eta"><strong>Età</strong>:</label>
                     <input type="number" id="eta" name="eta" min="1" max="999">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="altezza"><strong>Altezza</strong> (cm):</label>
                         <input type="number" id="altezza" name="altezza" min="1">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="peso"><strong>Peso</strong> (kg):</label>
                         <input type="number" id="peso" name="peso" min="1">
                     </div>
                 </div>
                 
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="occhi"><strong>Occhi</strong>:</label>
                     <input type="text" id="occhi" name="occhi">
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="carnagione"><strong>Carnagione</strong>:</label>
                     <input type="text" id="carnagione" name="carnagione">
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="capelli"><strong>Capelli</strong>:</label>
                     <input type="text" id="capelli" name="capelli">
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="aspetto"><strong>Aspetto</strong>:</label>
                     <textarea id="aspetto" name="aspetto" rows="4"></textarea>
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="aleorg"><strong>Alleati e organizzazione</strong>:</label>
                     <textarea id="aleorg" name="aleorg" rows="4"></textarea>
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="storia"><strong>Storia</strong>:</label>
                     <textarea id="storia" name="storia" rows="4"></textarea>
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="tesoro"><strong>Tesoro</strong>:</label>
                     <textarea id="tesoro" name="tesoro" rows="4"></textarea>
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="lp"><strong>Competenze e linguaggi</strong>:</label>
                     <textarea id="lp" name="lp" rows="4"></textarea>
                 </div>
@@ -109,47 +102,47 @@
 
         <!-- TAB 3: Statistiche -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Statistiche</legend>
 
                 <div class="affiancato">
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="forza">Forza:</label>
                         <input type="number" id="forza" name="forza" min="1" max="20">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="destrezza">Destrezza:</label>
                         <input type="number" id="destrezza" name="destrezza" min="1" max="20">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="costit">Costituzione:</label>
                         <input type="number" id="costit" name="costit" min="1" max="20">
                     </div>
                 </div>
                 <div class="affiancato">
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="intel">Intelligenza:</label>
                         <input type="number" id="intel" name="intel" min="1" max="20">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="sagg">Saggezza:</label>
                         <input type="number" id="sagg" name="sagg" min="1" max="20">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="carisma">Carisma:</label>
                         <input type="number" id="carisma" name="carisma" min="1" max="20">
                     </div>
                 </div>
                 <div class="form_group_affiancato">
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                     <label for="ispiraz">Ispirazione:</label>
                     <input type="number" id="ispiraz" name="ispiraz" min="0">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="bdcomp">Bonus di competenza:</label>
                         <input type="number" id="bdcomp" name="bdcomp">
                     </div>
-                    <div class="field-wrap">
+                    <div class="field_wrap">
                         <label for="percpas">Percezione passiva:</label>
                         <input type="number" id="percpas" name="percpas" min="10">
                     </div>
@@ -159,34 +152,38 @@
 
         <!-- TAB 4: Equipaggiamento -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Equipaggiamento iniziale</legend>
                 <p class="tab-note">Verrà reso dinamico in base alla forza del personaggio.</p>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="valuta"><strong>Valuta</strong>:</label>
                     <input type="text" id="valuta" name="valuta">
+                </div>
+                <div class="field_wrap">
+                    <label for="tesoro2"><strong>Tesoro</strong>:
+                    <input type="text" id="tesoro2" name="tesoro2">
                 </div>
             </fieldset>
         </div>
 
         <!-- TAB 5: Combattimento -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Punti vita e statistiche combattimento</legend>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="clarm"><strong>Classe armatura</strong>:</label>
                     <input type="text" id="clarm" name="clarm">
                 </div>
-                <p class="tab-note">Iniziativa: automatica (coincide con Destrezza).</p>
-                <div class="field-wrap">
+                <p class="tab_note">Iniziativa: automatica (coincide con Destrezza).</p>
+                <div class="field_wrap">
                     <label for="speed"><strong>Velocità (metri)</strong>:</label>
                     <input type="number" id="speed" name="speed" min="0">
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="dadivita"><strong>Dadi vita (D10)</strong>:(es.2D10)</label>
                     <input type="text" id="dadivita" name="dadivita">
                 </div>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="maxptifer"><strong>Massimo punti ferita</strong>:</label>
                     <input type="number" id="maxptifer" name="maxptifer" min="1">
                 </div>
@@ -195,9 +192,9 @@
 
         <!-- TAB 6: Incantesimi -->
         <div class="tab">
-            <fieldset class="tab-fieldset">
+            <fieldset class="tab_fieldset">
                 <legend>Incantesimi</legend>
-                <div class="field-wrap">
+                <div class="field_wrap">
                     <label for="incantesimi"><strong>Incantesimi</strong>:</label>
                     <textarea id="incantesimi" name="incantesimi" rows="10"></textarea>
                 </div>
@@ -205,13 +202,13 @@
         </div>
 
         <!-- Navigazione -->
-        <div class="form-nav">
+        <div class="form_nav">
             <button type="button" id="prevBtn" onclick="nextPrev(-1)">&#8592; Precedente</button>
             <button type="button" id="nextBtn" onclick="nextPrev(1)">Successivo &#8594;</button>
         </div>
 
         <!-- Step indicator -->
-        <div class="step-indicator" role="navigation" aria-label="Avanzamento form">
+        <div class="step_indicator" role="navigation" aria-label="Avanzamento form">
             <span class="step" aria-label="Step 1: Identità"></span>
             <span class="step" aria-label="Step 2: Descrizione"></span>
             <span class="step" aria-label="Step 3: Statistiche"></span>
