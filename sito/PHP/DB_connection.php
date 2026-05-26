@@ -40,5 +40,14 @@ class DBAccess
         mysqli_close($this->connection);
     }
 
+    public function getMembersByString($string)
+    {
+        $query = "SELECT * FROM Utente WHERE username LIKE ?";
+        $stmt = mysqli_prepare($this->connection, $query);
+        $likeString = $string . '%';
+        mysqli_stmt_bind_param($stmt, 's', $likeString);
+        mysqli_stmt_execute($stmt);
+        return mysqli_stmt_get_result($stmt);
+    }
 }
 ?>

@@ -8,7 +8,7 @@
         content="Crea la tua avventura per Dungeons & Dragons. Definisci trame, NPC, luoghi e mostri per i tuoi giocatori">
     <meta name="keywords"
         content="D&D, Dungeons & Dragons, campagna, RPG, dungeon master, avventura, NPC, trame, gioco di ruolo">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../CSS/ap_stylesheet.css">
     <link rel="stylesheet" href="./css/mini.css" media="screen and (max-width:800px)">
     <link rel="stylesheet" href="./css/print.css" media="print">
     <script src="./js/cerca_utenti.js"></script>
@@ -18,7 +18,7 @@
     <!-- Header incluso da header.html -->
     <div id="header-container">
         <script>
-            fetch('header.html')
+            fetch('./html/header.html')
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('header-container').innerHTML = html;
@@ -28,8 +28,9 @@
 
     <nav aria-label="Breadcrumb" class="breadcrumb">
         <ul>
-            <li><a href="#home" lang="en">Home</a></li>
-            <li><strong>Lista campagne</strong></li>
+            <li><a href="../homepage.php" lang="en">Home</a></li>
+            <li><a href="../lista_campagne.php">Campagne</a></li>
+            <li><strong>Creazione campagna</strong></li>
         </ul>
     </nav>
 

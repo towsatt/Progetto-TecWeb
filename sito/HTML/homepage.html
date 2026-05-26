@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampagnaHub - Gestione Campagne D&D</title>
+    <link rel="stylesheet" href="../CSS/ap_stylesheet.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="header-container">
+        <script>
+            fetch('./html/header.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('header-container').innerHTML = html;
+                });
+        </script>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="hero-section">
+            <h2>Benvenuto in CampagnaHub</h2>
+            <p>Gestisci le tue campagne di Dungeons & Dragons con facilità. Crea mondi epici, raccogli eroi e vivi
+                avventure indimenticabili!</p>
+
+            <div class="button-group">
+                <a href="../lista_campagne.php" class="btn btn-primary">
+                    Visualizza Campagne
+                </a>
+                <a href="../HTML/login.html" class="btn btn-secondary">
+                    Accedi
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 CampagnaHub. Tutti i diritti riservati. | <a href="#">Privacy Policy</a> | <a
+                href="#">Contatti</a></p>
+    </footer>
+</body>
+
+</html>

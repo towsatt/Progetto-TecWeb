@@ -8,9 +8,7 @@
         content="Esplora le campagne di Dungeons & Dragons create dai Dungeon Master. Scopri trame avvincenti, NPC unici e avventure epiche per i tuoi giocatori">
     <meta name="keywords"
         content="D&D, Dungeons & Dragons, campagna, RPG, dungeon master, avventura, NPC, trame, gioco di ruolo">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/mini.css" media="screen and (max-width:800px)">
-    <link rel="stylesheet" href="./css/print.css" media="print">
+    <link rel="stylesheet" href="../CSS/ap_stylesheet.css">
     <script src="./js/cerca_utenti.js"></script>
 </head>
 
@@ -18,7 +16,7 @@
     <!-- Header incluso da header.html -->
     <div id="header-container">
         <script>
-            fetch('header.html')
+            fetch('./html/header.html')
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('header-container').innerHTML = html;
@@ -28,15 +26,17 @@
 
     <nav id="breadcrumb">
             <ul>
-                <li lang="en"><a href="#home">Home</a></li>
-                <li><a href="#campagna">Campagna</a></li>
-                <li><a href="ViewCampagna.html">Visualizzazione Campagna</a></li> 
-                <li><strong>Scheda Campagna</strong></li>
+                <li lang="en"><a href="../homepage.php">Home</a></li>
+                <li>Campagna</a></li>
             </ul> 
         </nav>
 
     <main>
-        <button id="crea-campagna-btn" onclick="window.location.href='crea_campagna.html'">Crea Campagna</button>
+        <div class="button-group">
+                <a href="../creazione_campagna.php" class="btn btn-primary">
+                    Crea Campagne
+                </a>
+        </div>
         <div class="search-container">
             <input type="text" id="search" placeholder="Cerca campagna..." onChange="cercaCampagna()">
         </div>
