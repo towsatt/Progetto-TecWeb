@@ -1,0 +1,85 @@
+header:
+- login effettuato
+    no -> pulsante login
+    si -> pulsante area personale, pulsante logout
+classi usate: Utente
+
+homepage:
+Niente, basta il pulsante per redirect a campagne/forum se lo mettiamo
+
+registrazione:
+    - controllo dati non presenti nel db
+classi usate: Utente
+
+login:
+    - check dati corretti
+classi usate: Utente
+
+area personale:
+- login effettuato
+    no:
+        vedere i dettagli dell'utente, le campagne pubbliche a cui partecipa (con ruolo) e la lista amici
+    si:
+        - area personale altro utente
+            no login
+            inviare richiesta amicizia
+        - propria area personale
+            no login
+            modificare dati
+            accettare/rifiutare inviti campagne o amicizia
+            non è controllo ma priorità alle campagne in cui si è dm rispetto alle altre
+classi usate: Utente
+
+lista campagne:
+- login effettuato
+    no:
+        campagne pubbliche
+    si:
+        pulsante crea campagna
+        campagne pubbliche
+        campagne a cui si ha l'accesso
+classi usate: Utente, Campagna
+
+Dettagli Campagna:
+- login effettuato
+    no:
+        - Accedere alle sessioni
+        - Pagina Personaggio
+        - Accesso pagina personale membri
+    si:
+        no dm:
+            - no login
+        dm:
+            - no login
+            - Edit descrizione
+            - Invitare/espellere membri
+            - nuova sessione
+classi usate: Campagna, Personaggio, Sessione
+
+Scheda Personaggio
+- login effettuato
+    no:
+        - vedere dettagli
+    si:
+        dm?
+            si
+                - modificare dati
+            no
+                altro personaggio
+                    - no login
+                proprio personaggio
+                    - modificare dati
+classi usate: Personaggio
+
+Sessione:
+- login
+    no:
+        -sola lettura
+    si:
+        dm no:
+            - sola lettura
+        dm:
+            - modifica
+
+Controlli:
+    Login

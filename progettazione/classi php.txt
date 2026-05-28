@@ -1,0 +1,4 @@
+Utente
+Personaggio
+Campagna
+Sessione
