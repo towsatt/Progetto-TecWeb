@@ -13,6 +13,14 @@ create table Utente (
     primary key (username)
 ) ENGINE=InnoDB;
 
+create table Amici (
+    user1 varchar(255) not null,
+    user2 varchar(255) not null,
+    primary key (user1, user2),
+    foreign key (user1) references Utente(username) on delete cascade,
+    foreign key (user2) references Utente(username) on delete cascade
+) ENGINE=InnoDB;
+
 create table Campagna (
     codice_campagna varchar(16) not null,
     nome varchar(255) not null,
@@ -143,6 +151,52 @@ INSERT INTO Utente (username, password, email, profile_picture_path) VALUES
 ('Doran_D', '$2y$10$Nx76vX...', 'doran@example.com', NULL),
 ('Sariel_Elf', '$2y$10$Nx76vX...', 'sariel@example.com', NULL),
 ('Brokk_Deep', '$2y$10$Nx76vX...', 'brokk@example.com', NULL);
+
+-- ============================================================================
+-- 1.5 POPOLAMENTO TABELLA AMICI (Relazioni Bidirezionali)
+-- ============================================================================
+INSERT INTO Amici (user1, user2) VALUES
+-- Gruppo della Campagna 1 (La Maledizione di Crimson)
+('Player_Aragorn', 'Player_Legolas'),
+('Player_Aragorn', 'Player_Gimli'),
+('Player_Legolas', 'Player_Boromir'),
+('Player_Gimli', 'Player_Frodo'),
+('Player_Boromir', 'Player_Aragorn'),
+
+-- Gruppo della Campagna 2 (Il Risveglio dei Draghi)
+('Xandor_The_Great', 'Eldrin_Shadow'),
+('Xandor_The_Great', 'Thorgar_Iron'),
+('Eldrin_Shadow', 'Lyra_Melody'),
+('Thorgar_Iron', 'Seraphina_Light'),
+('Lyra_Melody', 'Xandor_The_Great'),
+
+-- Gruppo della Campagna 3 (I Segreti del Sottosuolo)
+('Grog_Smash', 'Varis_Wind'),
+('Grog_Smash', 'Zephyr_Storm'),
+('Varis_Wind', 'Kaelen_Dark'),
+('Zephyr_Storm', 'Bryn_Swift'),
+('Kaelen_Dark', 'Bryn_Swift'),
+
+-- Gruppo della Campagna 4 (L'Ombra di Vecna)
+('Sylas_Grey', 'Morgana_Le'),
+('Sylas_Grey', 'Ulfric_Storm'),
+('Morgana_Le', 'Valerie_Val'),
+('Ulfric_Storm', 'Cedric_Bold'),
+('Valerie_Val', 'Cedric_Bold'),
+
+-- Gruppo della Campagna 5 (Incursione a Sharn)
+('Kira_Nerys', 'Talon_V'),
+('Kira_Nerys', 'Doran_D'),
+('Talon_V', 'Sariel_Elf'),
+('Doran_D', 'Brokk_Deep'),
+('Sariel_Elf', 'Brokk_Deep'),
+
+-- DungeonMaster connessi tra loro
+('DungeonMaster1', 'DungeonMaster2'),
+('DungeonMaster2', 'DungeonMaster3'),
+('DungeonMaster3', 'DungeonMaster4'),
+('DungeonMaster4', 'DungeonMaster5');
+
 
 -- ============================================================================
 -- 2. POPOLAMENTO TABELLA CAMPAGNA (5 Campagne)
