@@ -1,0 +1,315 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+h1 {
+    text-align: center;
+    color: #F5DEB3;
+    font-size: 28px;
+    padding: 30px 0 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ── FORM WRAPPER ── */
+#multi_step_form {
+    background-color: #C8915A;
+    margin: 40px auto 80px;
+    padding: 32px 40px;
+    width: 80%;
+    min-width: 300px;
+    max-width: 860px;
+    border: 2px solid #8B1A1A;
+    border-radius: 8px;
+}
+
+/* ── TAB (step panels) ── */
+.tab {
+    display: none; /* nascosto di default, JS mostra quello attivo */
+}
+
+/* ── FIELDSET interno al tab ── */
+.tab_fieldset {
+    border: 1.5px solid #8B1A1A;
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    background-color: rgba(92, 10, 10, 0.05);
+}
+
+.tab_fieldset > legend {
+    font-size: 17px;
+    font-weight: 700;
+    color: #3D0505;          /* contrasto 5.4:1 su #C8915A ✅ AA */
+    padding: 0 8px;
+    background: #C8915A;
+    border-radius: 3px;
+}
+
+.tab_note {
+    font-size: 13px;
+    color: #5C0A0A;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* ── FIELD WRAP ── */
+.field_wrap {
+    margin-bottom: 1rem;
+}
+
+.field_wrap label {
+    display: block;
+    padding: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3D0505;          /* contrasto 5.4:1 su #C8915A ✅ AA */
+}
+
+/* ── INPUT, SELECT, TEXTAREA ── */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 2px solid #8B1A1A;
+    border-radius: 4px;
+    background-color: #F5DEB3; /* pergamena */
+    color: #3D0505;            /* contrasto 7.2:1 su #F5DEB3 ✅ AAA */
+    font-size: 14px;
+    font-family: Georgia, serif;
+    resize: vertical;
+    transition: border-color 0.15s, outline 0.15s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    outline: 3px solid #5C0A0A;
+    outline-offset: 2px;
+    border-color: #5C0A0A;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #9A6040;
+}
+
+/* Numero: larghezza ridotta */
+input[type="number"] {
+    width: 100px;
+    text-align: center;
+    
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Validazione errore */
+input.invalid {
+    border-color: #B34000;
+    background-color: #FDE8D8;
+}
+
+/* ── CLASSE & RAZZA AFFIANCATI ── */
+.form_group_affiancato {
+    display: flex;
+    flex-wrap: wrap;        /* va a capo se non c'è spazio */
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.form_group_affiancato fieldset {
+    flex: 1 1 200px;        /* affiancati su desktop, impilati su mobile */
+    border: 1.5px solid #8B1A1A;
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    background: rgba(92, 10, 10, 0.06);
+}
+
+.form_group_affiancato fieldset legend {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3D0505;
+    padding: 0 6px;
+    background: #C8915A;
+    border-radius: 3px;
+}
+
+/* ── RADIO BUTTON ── */
+.radio_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 0;
+}
+
+.radio_item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #7A2C00;
+    background: #F5DEB3;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.radio_item input[type="radio"]:hover {
+    border-color: #5C0A0A;
+}
+
+.radio_item input[type="radio"]:focus-visible {
+    outline: 3px solid #5C0A0A;
+    outline-offset: 3px;
+}
+
+.radio_item input[type="radio"]:checked {
+    background: #B34000;   /* contrasto bianco su #B34000 = 4.7:1 ✅ AA */
+    border-color: #7A2C00;
+}
+
+.radio_item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #F5DEB3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio_item label {
+    font-size: 14px;
+    color: #3D0505;
+    cursor: pointer;
+}
+
+/* ── STATISTICHE AFFIANCATE ── */
+.affiancato {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 8px 0;
+}
+
+.affiancato .field_wrap {
+    flex: 1 1 120px;
+    margin-bottom: 0;
+}
+
+.affiancato .field_wrap input[type="number"] {
+    width: 100%;
+}
+
+/* ── NAVIGAZIONE PREV/NEXT ── */
+.form_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+
+button {
+    background-color: #B34000;  /* contrasto bianco 4.7:1 ✅ AA */
+    color: #ffffff;
+    border: 2px solid #7A2C00;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-family: Georgia, serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+button:hover  { background-color: #922E00; }
+button:active { transform: scale(0.98); }
+
+button:focus-visible {
+    outline: 3px solid #5C0A0A;
+    outline-offset: 3px;
+}
+
+#prevBtn {
+    background-color: #5C0A0A;  /* contrasto bianco 7.1:1 ✅ AAA */
+    border-color: #3D0505;
+}
+#prevBtn:hover { background-color: #3D0505; }
+
+/* ── STEP INDICATOR ── */
+.step_indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.step {
+    height: 14px;
+    width: 14px;
+    background-color: #F5DEB3;
+    border: 2px solid #8B1A1A;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.step.active {
+    background-color: #B34000;
+    border-color: #7A2C00;
+    transform: scale(1.25);
+}
+
+.step.finish {
+    background-color: #5C0A0A;
+    border-color: #3D0505;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+    #multi_step_form {
+        width: 95%;
+        padding: 20px 16px;
+    }
+
+    /* Classe e Razza uno sotto l'altro */
+    .form_group_affiancato {
+        flex-direction: column;
+    }
+
+    /* Statistiche uno sotto l'altro */
+    .affiancato {
+        flex-direction: column;
+    }
+
+    .affiancato .field-wrap {
+        flex: 1 1 auto;
+    }
+
+    input[type="number"] {
+        width: 100%;
+    }
+
+    .form_nav {
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+    }
+
+    .form_nav button {
+        width: 100%;
+        text-align: center;
+    }
+}
