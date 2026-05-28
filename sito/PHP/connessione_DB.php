@@ -8,7 +8,6 @@ class DBAccess
 {
     //XAMPP localhost mydb root ""
     //Docker db mydb root root
-    //localhost mmazzare mmazzare password
     private const HOST_DB = "localhost";
     private const DATABASE_NAME = "mydb";
     private const USERNAME = "root";
@@ -30,7 +29,7 @@ class DBAccess
 
         } catch (\mysqli_sql_exception $e) {
             http_response_code(500);
-            include __DIR__ . "/500.php";
+            include __DIR__ . "../500.php";
             exit();
         }
     }
