@@ -1,32 +1,43 @@
 <?php
 
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handler' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
 include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'connessione_DB.php';
 
 class InputValidator
 {
+
     public static function validateEmail($email): void
     {
-        // connessione al database -> se fallisce throw DatabaseError
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new InputError("Invalid email format");
+            throw new InputError("Il formato dell'email non è valido.");
         }
     }
 
-    public static function validatePassword($password): void
+    public static function validatePassword(string $password): void
     {
-        // Logica della password da imparare
-        if (strlen($password) < 8) {
-            throw new InputError("Password must be at least 8 characters long");
+        $len = strlen($password);
+        if ($len < 12 || $len > 24) {
+            throw new InputError("La password deve contenere tra 12 e 24 caratteri.");
+        }
+
+        if (!preg_match('/[A-Z]/', $password)) {
+            throw new InputError("La password deve contenere almeno una lettera maiuscola.");
+        }
+
+        if (!preg_match('/[0-9]/', $password)) {
+            throw new InputError("La password deve contenere almeno un numero.");
+        }
+
+        // Modo più robusto: cerca qualsiasi carattere che NON sia alfanumerico
+        if (!preg_match('/[^a-zA-Z0-9]/', $password)) {
+            throw new InputError("La password deve contenere almeno un carattere speciale.");
         }
     }
 
-    public static function validateUsername($username): void
+    public static function validateUsername(string $username): void
     {
-        // Sistemare la whitelist dei caratteri
-        if (!preg_match('/^[a-zA-Z0-9]{3,20}$/', $username)) {
-            throw new InputError("Invalid username format");
+        if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
+            throw new InputError("L'username può contenere solo lettere, numeri e underscore, e deve essere lungo tra i 3 e i 20 caratteri.");
         }
     }
 }
-?>

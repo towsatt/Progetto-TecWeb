@@ -1,12 +1,18 @@
 <?php
 
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handler' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Validator' . DIRECTORY_SEPARATOR . 'InputValidator.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Validators' . DIRECTORY_SEPARATOR . 'InputValidator.php';
 
 class InputController {
+    private static function sanitize(string $data): string
+    {
+        return trim(htmlspecialchars($data, ENT_QUOTES, 'UTF-8'));
+    }
     public static function validateEmail($email) {
         try{
+            $email = self::sanitize($email);
             InputValidator::validateEmail($email);
+            return $email;
         } catch (DatabaseError $e) {
             http_response_code(500);
         } catch (InputError $e) {
@@ -18,7 +24,9 @@ class InputController {
 
     public static function validatePassword($password) {
         try {
+            $password = self::sanitize($password);
             InputValidator::validatePassword($password);
+            return $password;
         } catch (DatabaseError $e) {
             http_response_code(500);
         } catch (InputError $e) {
@@ -27,9 +35,11 @@ class InputController {
             http_response_code(500);
         }
     }
-    public static function validateUsername($username) {
+    public static function validateUsername($username) { // Rinominiamo in validateName per usarlo in più contesti? Tipo username, nome personaggio, ecc.
         try {
+            $username = self::sanitize($username);
             InputValidator::validateUsername($username);
+            return $username;
         } catch (DatabaseError $e) {
             http_response_code(500);
         } catch (InputError $e) {

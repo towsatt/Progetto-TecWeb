@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__ . DIRECTORY_SEPARATOR . 'Handler' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
-include_once __DIR__ . DIRECTORY_SEPARATOR . 'Validators' . DIRECTORY_SEPARATOR . 'InputValidator.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'InputController.php';
 
 class DBAccess
 {
@@ -32,29 +32,27 @@ class DBAccess
         mysqli_close($this->connection);
     }
 
-    public function researchUser($username): array|null
+    public function researchUser($input_username): ?array
     {
-        InputValidator::validateUsername($username);
-
-        $pattern = $username . '%';
-        $stmt = mysqli_prepare($this->connection, "SELECT * FROM Utente WHERE username LIKE ?;");
-        if (!$stmt) {
-            throw new DatabaseError("Errore nella preparazione della query");
+        $username = InputController::validateUsername($input_username) . '%';
+        $query = "SELECT * FROM Utente WHERE username LIKE ?";
+        try{
+            $stmt = $this->connection->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows === 0) {
+                return null;
+            }
+            $users = [];
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+            return $users;
+        }catch (mysqli_sql_exception $e) {
+            error_log("Errore DB durante la ricerca utente: " . $e->getMessage());
+            throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
         }
-
-        mysqli_stmt_bind_param($stmt, 's', $pattern);
-        mysqli_stmt_execute($stmt);
-
-        $result = mysqli_stmt_get_result($stmt);
-        if (!$result) {
-            mysqli_stmt_close($stmt);
-            throw new DatabaseError("Errore nell'esecuzione della query");
-        }
-
-        $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        mysqli_stmt_close($stmt);
-
-        return count($rows) === 0 ? null : $rows;
     }
 }
 ?>

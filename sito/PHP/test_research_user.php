@@ -13,10 +13,10 @@ try {
         echo "Trovati " . count($users) . " utente(i):\n";
         print_r($users);
     }
+} catch (DatabaseError $e) {
+    echo "db ". $e->getMessage() ."";
+} catch (InputError $e) {
+    echo "input ". $e->getMessage() ."";
 } catch (Exception $e) {
-    fwrite(STDERR, "Errore: " . $e->getMessage() . "\n");
-} finally {
-    if (isset($db)) {
-        $db->closeConnection();
-    }
+    echo "unexpected ". $e->getMessage() ."";
 }
