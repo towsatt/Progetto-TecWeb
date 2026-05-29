@@ -82,4 +82,6 @@ Sessione:
             - modifica
 
 Controlli:
-    Login
+    Auth controller
+    Role controller
+    Ownership controller (Visitor pattern)
