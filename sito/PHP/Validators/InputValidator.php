@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'connessione_DB.php';
+include_once '../Handlers/ErrorHandler.php';
+include_once '../connessione_DB.php';
 
 class InputValidator
 {

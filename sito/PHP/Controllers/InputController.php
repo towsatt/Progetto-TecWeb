@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
-include_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Validators' . DIRECTORY_SEPARATOR . 'InputValidator.php';
+include_once '../Handlers/ErrorHandler.php';
+include_once '../Validators/InputValidator.php';
 
 class InputController {
     private static function sanitize(string $data): string

@@ -1,6 +1,6 @@
 <?php
-include_once __DIR__ . DIRECTORY_SEPARATOR . 'Handlers' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
-include_once __DIR__ . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'InputController.php';
+include_once 'Handlers/ErrorHandler.php';
+include_once 'Controllers/InputController.php';
 
 class DBAccess
 {
