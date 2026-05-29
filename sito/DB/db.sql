@@ -1,6 +1,6 @@
 drop table if exists Progressi;
-drop table if exists Sessione;
 drop table if exists Personaggio;
+drop table if exists Sessione;
 drop table if exists Membro;
 drop table if exists Campagna;
 drop table if exists Utente;
