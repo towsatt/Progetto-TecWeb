@@ -1,0 +1,14 @@
+{
+  "name": "Sito Web in Docker",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "web", // Il nome del servizio PHP nel tuo docker-compose
+  "workspaceFolder": "/var/www/html",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "xdebug.php-debug", // Estensioni utili che vuoi dentro il container
+        "bmewburn.vscode-intelephense-client"
+      ]
+    }
+  }
+}
