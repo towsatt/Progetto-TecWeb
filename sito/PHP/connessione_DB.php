@@ -3,6 +3,8 @@ use mysqli;
 use mysqli_result;
 use throwable;
 use exception;
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'Handler' . DIRECTORY_SEPARATOR . 'ErrorHandler.php';
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR . 'InputController.php';
 
 class DBAccess
 {
@@ -15,7 +17,8 @@ class DBAccess
 
     private $connection;
 
-    public function openDBConnection() {
+    public function openDBConnection()
+    {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
         try {
@@ -25,12 +28,8 @@ class DBAccess
                 self::PASSWORD,
                 self::DATABASE_NAME
             );
-            return true;
-
-        } catch (\mysqli_sql_exception $e) {
-            http_response_code(500);
-            include __DIR__ . "../500.php";
-            exit();
+        } catch (Exception $_e) {
+            throw new DatabaseError("Errore di connessoine al database");
         }
     }
 
@@ -39,5 +38,14 @@ class DBAccess
         mysqli_close($this->connection);
     }
 
+    public function researchUser($username): array
+    {
+        // InputController::validateUsername($username);
+        // $query = "SELECT * FROM Utente WHERE username LIKE " . $username . "%;";
+        // $stmt = mysqli_prepare($this->connection, $query);
+        // mysqli_stmt_bind_param($stmt, "s", $username);
+        // mysqli_stmt_execute($stmt);
+        // return mysqli_stmt_get_result($stmt);
+    }
 }
 ?>
