@@ -87,7 +87,7 @@ class InputValidator
             $stmt->execute();
             $stmt->store_result();
             $exists=$stmt->num_rows > 0;
-            if($exists==1){
+            if($exists==1 && password_verify($password, $stmt->fetch()[0])){
                 //avviene connessione 
             } else{
                 throw new InputError("Username o password errati.");
