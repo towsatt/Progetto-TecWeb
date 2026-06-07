@@ -1,0 +1,23 @@
+Connessione al database
+Get sul database
+Post sul database
+
+
+
+
+
+
+
+
+
+
+
+
+Error HANDLING:
+    1. Connessione al database fallita
+    2. Dati non trovati
+    3. Nickname già esistente
+    4. Password non conforme alle norme di sicurezza
+    5. Email non valida
+    6. Immagine troppo grande 
+    7. SQL Injection da sistemare

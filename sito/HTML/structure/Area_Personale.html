@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">  
+        <title>Area Personale</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../css/ap_stylesheet.css">
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+    <div class="wrapper">
+        <header class="header-site">
+            <img src="../assets/Dragon.png" alt="Drago" style="transform: scaleX(-1);" width="90" height="90" class="left_dragon">
+            <a href="#" class="logo">D&D Reunion</a>
+            <ul class="navlinks">
+                <li><a href="#">Home</a></li>
+                <div class="dropdown">
+                    <li><a href="#" class="dropbtn">Campagne</a>
+                        <div class="dropdown-content">
+                            <a href="#">Visualizza Campagne</a>
+                            <a href="#">Crea Campagna</a>
+                        </div>
+                    </li>
+                </div>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#" type="info">Info</a></li>
+            </ul>
+            <button class="user"><i class='bx bx-user-circle'></i></box-icon>Login/Registrati</button>
+            <img src="../assets/Dragon.png" alt="Drago" width="90" height="90" class="right_dragon">
+        </header>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="#home">Home</a></li>
+                    <li><span aria-current="page"> Area Personale</span></li>
+                </ol>
+            </div>
+        </nav>
+        <main class="page-body">
+        <div class="grid-container">
+
+            <div class="headerpagina">
+                <h1>Area Personale</h1>
+            </div>
+            
+            <div class="left">
+                <div class="avatar-container">
+                    <div class="profile-container">
+
+                        <div class="profile-circle" id="profileCircle">
+                        <img id="profileImage" src="../assets/user.png" alt="Foto profilo">
+                        </div>
+                    </div>
+                        <div class="reset">
+                            <button class="btn-reset" id="resetBtn">Elimina foto</button>
+                        </div>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="nickname-zone">         
+                    <label for="nickname">Nickname</label>
+                    <div class="input-part">
+                        <input type="text" class="nickname-input" id="nickname" value="Asdrubale123" maxlength="20" readonly disabled>
+                        <button type="button" class="edit-btn" data-field="nickname"><img src="../assets/Modifica_penna.png" width="30" height="30"> </button>            
+                    </div>
+                </div>
+                <div class="password-zone">
+                    <label for="password">Password</label>
+                    <div class="input-part">
+                        <input type="password" id="password" value="admin" maxlength="20" readonly disabled>
+                        <button type="button" class="edit-btn" data-field="password"><img src="../assets/Modifica_penna.png" width="30" height="30"> </button>
+                    </div>
+                </div>
+
+                <div class="email-zone">
+                    <label for="email">Email</label>
+                    <div class="input-part">
+                        <input type="email" id="email" value="mariorossi01@gmail.com" maxlength="70" readonly disabled>
+                        <button type="button" class="edit-btn" data-field="email"><img src="../assets/Modifica_penna.png" width="30" height="30"> </button>
+                    </div>
+                </div>
+
+                <div class="description">
+                    <label for="description">Descrizione</label>
+                    <div class="input-part">
+                        <textarea id="description" maxlength="500" rows="4" readonly disabled>Descriviti! (max 500 caratteri)</textarea>
+                        <button type="button" class="edit-btn" data-field="description"><img src="../assets/Modifica_penna.png" width="30" height="30"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="notifica">
+                    <label for="notification" class="notification">
+                        <img id="notifica_chiusa" src="../assets/notifica_chiusa.png" alt="notifiche_non_lette" width="90" height="70">
+                    </label>
+                </div>
+
+            </div>
+        </div>
+        </main>
+        <footer> 
+            <div id="footer_container">
+                <div id="footer_titolo">
+                    <img id="logo" src="../assets/logo_page.png" alt="logo placeholder">
+                    <h3>D&D Reunion</h3>
+                    <p>Il ritrovo perfetto dei player di D&D</p>
+                </div>
+                <div id="footer_contatti">
+                    <p>E<strong>' possibile contattarci tramite:</strong></p>
+                    <ul>
+                        <li>mail@mail.mail</li>
+                        <li>+2131728312763</li>
+                        <li>linkedlksad</li>
+                        <li> x the everything app</li>
+                    </ul>
+                </div>    
+            </div>
+        </footer> 
+    </div>
+        <input type="file" id="fileInput" accept="image/*">
+
+    <script src="../JS/loading_dati_ap.js"></script>
+    </body>
+    
+</html>

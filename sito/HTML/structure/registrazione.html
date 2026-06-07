@@ -1,0 +1,41 @@
+<body>
+  <form action="registrati.php" method="POST" id="form_reg">
+    <div class="panel" id="p_panel_reg">
+      <div class="tab_nav" role="tablist">
+        <button class="tab_btn active" id="p_tab_login" role="tab" aria-selected="false" onclick="window.location.href='login.html';">Accedi</button>
+        <button class="tab_btn"        id="p_tab_reg"   role="tab" aria-selected="true" onclick="window.location.href='registrazione.html';">Registrati</button>
+      </div>
+      <div class="panel">
+        <span class="required_note"><span class="required_mark" aria-hidden="true">*</span> Campo obbligatorio</span>
+        <div class="field_wrap">
+          <label for="p_runame"><strong>Username</strong> <span class="required_mark" aria-hidden="true">*</span></label>
+          <input type="text" id="p_runame" name="username" placeholder="Scegli uno username">
+        </div>
+        <div class="field_wrap">
+          <label for="p_mail"><strong>Email</strong> <span class="required_mark" aria-hidden="true">*</span></label>
+          <input type="email" id="p_mail" name="email" placeholder="esempio@email.com">
+        </div>
+        <div class="field_wrap">
+          <label for="p_rpwd"><strong>Password</strong> <span class="required_mark" aria-hidden="true">*</span></label>
+          <div class="input_row">
+            <input type="password" id="p_rpwd" name="password" placeholder="Min. 8 caratteri" oninput="checkMatch()">
+            <button type="button" class="eye_btn" aria-label="Mostra password" onclick="togglePwd('p_rpwd',this)">👁</button>
+          </div>
+          <span class="field_hint">Almeno 8 caratteri</span>
+        </div>
+        <div class="field_wrap">
+          <label for="p_rpwd2"><strong>Conferma password</strong> <span class="required_mark" aria-hidden="true">*</span></label>
+          <div class="input_row">
+            <input type="password" id="p_rpwd2" name="password2" placeholder="Ripeti la password" oninput="checkMatch()">
+            <button type="button" class="eye_btn" aria-label="Mostra conferma password" onclick="togglePwd('p_rpwd2',this)">👁</button>
+          </div>
+          <span class="field_hint" id="p_match_hint" aria-live="polite"></span>
+        </div>
+        <div class="form_footer">
+          <button type="submit" class="btn_primary">Registrati</button>
+          <span class="switch_hint">Hai già un account? <a class="link" href="login.html">Accedi</a></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
