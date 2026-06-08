@@ -7,7 +7,7 @@ class AuthController
     public static function login(User $user)
     {
         $_SESSION['username'] = $user->getUsername();
-        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['password'] = $user->getPassword();
     }
 
     public static function logout()
@@ -39,9 +39,9 @@ class AuthController
 
     public static function getAuthUser()
     {
-        if(isset($_SESSION['email']))
+        if(isset($_SESSION['username']))
         {
-            $result = DBController::runQuery("SELECT * FROM utente WHERE email = ?", $_SESSION['email']);
+            $result = DBController::runQuery("SELECT * FROM utente WHERE username = ?", $_SESSION['username']);
             if($result !== false)
             {
                 return new User($result);

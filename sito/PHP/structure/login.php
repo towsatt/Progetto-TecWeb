@@ -7,9 +7,10 @@
 
     session_start();
 
-    try {
-        if (AuthController::isLogged()) {
+    if (AuthController::isLogged()) {
             header("Location: area_personale.php");
-        }
-    }   
+    }
+    
+    
+    
 ?>

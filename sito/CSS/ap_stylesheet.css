@@ -1,3 +1,7 @@
+/* ========================================================================
+                      RESET E STILI GENERALI
+   ======================================================================== */
+
 * {
     padding: 0;
     margin: 0;
@@ -11,7 +15,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background-color: #f5f5f5;
-
 }
 
 .wrapper {
@@ -24,6 +27,10 @@ body {
     flex: 1;
 }
 
+/* ========================================================================
+                      LAYOUT PRINCIPALE
+   ======================================================================== */
+
 .grid-container {
     display: grid;
     grid-template-areas:
@@ -31,13 +38,11 @@ body {
         'left middle right';
 }
 
-.left .middle .right {
+.left,
+.middle,
+.right {
     padding: 0.25rem;
 }
-
-/* ========================================================================
-============================== Sezione Header ==============================
-=========================================================================== */
 
 .container {
     max-width: 1200px;
@@ -45,16 +50,9 @@ body {
     padding: 0 20px;
 }
 
-.container li a {
-    color: #8B0000;
-    text-decoration: none;
-    transition: all .50s ease;
-}
-
-.container a:hover {
-    color: blue;
-}
-
+/* ========================================================================
+                          SEZIONE HEADER
+   ======================================================================== */
 
 header {
     background: #E6BF8C;
@@ -67,7 +65,7 @@ header {
     align-items: center;
     justify-content: space-evenly;
     padding: 20px 5%;
-    transition: all .50s ease;
+    transition: all 0.5s ease;
 }
 
 header .container {
@@ -82,26 +80,35 @@ header .container {
     display: flex;
 }
 
-.logo {
+.logo-header {
     display: flex;
-    align-items: center;
+    height: auto;
+    width: auto;
+    max-width: 180px;
+    max-height: 200px;
+    transition: all 0.5s ease;
+}
+
+.logo-header:hover {
+    cursor: pointer;
+}
+
+/* ========================================================================
+                          NAVIGAZIONE
+   ======================================================================== */
+
+.container li a {
     color: #8B0000;
-    font-size: 1.5rem;
-    font-weight: 700;
-    font-family: Luminari;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.container a:hover {
+    color: blue;
 }
 
 .navlinks li {
     display: inline-block;
-}
-
-.navlinks li a {
-    color: #8B0000;
-    font-weight: 500;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: all .50s ease;
 }
 
 .navlinks li a,
@@ -112,8 +119,8 @@ header .container {
     padding: 14px 16px;
     text-decoration: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: all 0.5s ease;
 }
-
 
 .navlinks a:hover,
 .dropdown:hover .dropbtn {
@@ -147,11 +154,14 @@ header .container {
     color: white;
 }
 
-
 .dropdown:hover .dropdown-content {
     display: block;
-    transition: all .50s ease;
+    transition: all 0.5s ease;
 }
+
+/* ========================================================================
+                          PULSANTE UTENTE
+   ======================================================================== */
 
 .user {
     display: flex;
@@ -165,7 +175,7 @@ header .container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
-    transition: all .50s ease;
+    transition: all 0.5s ease;
 }
 
 .user i {
@@ -177,6 +187,10 @@ header .container {
 .user:hover {
     background-color: #8B0000;
 }
+
+/* ========================================================================
+                          BREADCRUMB
+   ======================================================================== */
 
 .breadcrumb {
     background-color: white;
@@ -227,8 +241,8 @@ header .container {
 }
 
 /* ========================================================================
-============================== Sezione Avatar =============================
-=========================================================================== */
+                      SEZIONE AVATAR (SINISTRA)
+   ======================================================================== */
 
 .left {
     grid-area: left;
@@ -236,7 +250,6 @@ header .container {
 }
 
 .left .avatar-container {
-    /* Avatar section */
     background: #f5f5f5;
     border-radius: 20px;
     padding: 40px;
@@ -268,6 +281,7 @@ header .container {
     background: #f1f1f1;
 }
 
+
 .left .profile-circle img {
     width: 100%;
     height: 100%;
@@ -282,7 +296,6 @@ header .container {
     left: 0;
     width: 100%;
     height: 100%;
-    background: '';
     display: flex;
     align-items: center;
     justify-content: center;
@@ -319,8 +332,6 @@ header .container {
     background: #d32f2f;
 }
 
-
-/* Input file nascosto */
 #fileInput {
     display: none;
 }
@@ -328,8 +339,8 @@ header .container {
 
 
 /* ========================================================================
-=========================== Sezione Informazioni ==========================
-=========================================================================== */
+                  SEZIONE INFORMAZIONI (CENTRO)
+   ======================================================================== */
 
 .middle {
     grid-area: middle;
@@ -371,7 +382,6 @@ header .container {
     width: 75%;
 }
 
-/* Stile per tutti gli input (nickname, password, email) */
 .input-part input[type="text"],
 .input-part input[type="password"],
 .input-part input[type="email"] {
@@ -394,7 +404,6 @@ header .container {
     box-shadow: 0 0 8px rgba(139, 0, 0, 0.2);
 }
 
-/* Stile specifico per la descrizione - più alta */
 .description .input-part textarea {
     flex: 1;
     padding: 14px 18px;
@@ -417,9 +426,8 @@ header .container {
     box-shadow: 0 0 8px rgba(139, 0, 0, 0.2);
 }
 
-/* Stile per i pulsanti di modifica */
 .edit-btn {
-    background: none;
+    background-color: #f0f0f0;
     border: none;
     cursor: pointer;
     padding: 8px;
@@ -428,7 +436,6 @@ header .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f0f0f0;
 }
 
 .edit-btn:hover {
@@ -445,65 +452,46 @@ header .container {
     filter: brightness(0) invert(1);
 }
 
-/* Stile per il campo in modifica */
 .input-part input.editing,
 .description .input-part textarea.editing {
     background-color: #fff;
     border-color: #8B0000;
 }
 
-/* Responsive per schermi piccoli */
-@media (max-width: 768px) {
-    .middle {
-        padding: 20px 15px;
-    }
-
-    .input-part {
-        flex-wrap: wrap;
-    }
-
-    .edit-btn {
-        padding: 6px;
-    }
-
-    .edit-btn img {
-        width: 24px;
-        height: 24px;
-    }
-
-    .description .input-part textarea {
-        min-height: 100px;
-    }
-}
-
 /* ========================================================================
-=========================== Parte destra Grid =============================
-=========================================================================== */
+                      SEZIONE DESTRA
+   ======================================================================== */
 
 .right {
     grid-area: right;
     padding: 10% 20%;
 }
 
+.notifica{
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+
+}
+
+.notifica_chiusa:hover{
+    cursor: pointer;
+}
+
 /* ========================================================================
-=========================== Sezione Notifiche =============================
-=========================================================================== */
-
-
-
-/* ========================================================================
-============================== Sezione Footer =============================
-=========================================================================== */
+                      SEZIONE FOOTER
+   ======================================================================== */
 
 footer {
     background-color: rgb(36, 36, 36);
     color: #FFFFFF;
-
     padding: 1em;
     font-size: 0.85em;
 }
 
-footer>p {
+footer > p {
     margin-top: 1em;
     text-align: center;
 }
@@ -518,6 +506,8 @@ footer>p {
 #footer_titolo {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 #footer_titolo h3 {
@@ -529,23 +519,25 @@ footer>p {
     margin-bottom: 1em;
 }
 
+#footer_titolo img {
+    vertical-align: middle;
+    height: auto;
+    width: auto;
+    max-width: 150px;
+    max-height: 150px;
+    margin: 1em 0em;
+}
 
 #footer_contatti {
     width: 30%;
     margin-right: 1em;
+    text-align: center;
 }
 
 #footer_contatti p {
     border-bottom: 1px solid white;
     padding: 1em 0em 0em 0.5em;
     margin-bottom: 0.5em;
-}
-
-#footer_titolo img {
-    vertical-align: middle;
-    height: 120px;
-    width: 200px;
-    margin: 1em 0em;
 }
 
 #footer_contatti ul {
@@ -556,16 +548,18 @@ footer>p {
     margin-left: 1em;
 }
 
-/* Responsive: quando lo schermo diventa piccolo */
-@media (max-width: 768px) {
+/* ========================================================================
+                      MEDIA QUERIES
+   ======================================================================== */
 
+@media (max-width: 768px) {
     .left_dragon,
     .right_dragon {
         width: 50px;
         height: 50px;
     }
 
-    .header {
+    header {
         justify-content: space-evenly;
     }
 
@@ -575,7 +569,7 @@ footer>p {
             "left middle middle";
     }
 
-    .header {
+    header {
         grid-column: 1 / 3;
         grid-row: 1 / 2;
     }
@@ -597,8 +591,28 @@ footer>p {
         font-size: 28px;
     }
 
+    .middle {
+        padding: 20px 15px;
+    }
+
+    .input-part {
+        flex-wrap: wrap;
+    }
+
+    .edit-btn {
+        padding: 6px;
+    }
+
+    .edit-btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .description .input-part textarea {
+        min-height: 100px;
+    }
+
     .left .avatar-container {
-        /* Avatar section */
         background: #f5f5f5;
         border-radius: 20px;
         padding: 40px;
@@ -644,7 +658,6 @@ footer>p {
         left: 0;
         width: 100%;
         height: 100%;
-        background: '';
         display: flex;
         align-items: center;
         justify-content: center;
@@ -669,7 +682,6 @@ footer>p {
         width: 150px;
         margin: 1em 0em;
     }
-
 
     /* Scrollbar personalizzata */
     ::-webkit-scrollbar {

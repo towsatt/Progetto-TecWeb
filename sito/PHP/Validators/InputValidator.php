@@ -40,4 +40,13 @@ class InputValidator
             throw new InputError("L'username può contenere solo lettere, numeri e underscore, e deve essere lungo tra i 3 e i 20 caratteri.");
         }
     }
+
+    public static function validateDescription(string $description): void
+    {
+        if (strlen($description) > 500) {
+            throw new InputError("La descrizione non può superare i 500 caratteri.");
+        }
+    }
+
+    
 }

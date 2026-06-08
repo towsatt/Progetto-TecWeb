@@ -1,0 +1,241 @@
+/* ========================================================================
+                      RESET E STILI GENERALI
+   ======================================================================== */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-body {
+    flex: 1;
+}
+
+/* ========================================================================
+                      LAYOUT PRINCIPALE
+   ======================================================================== */
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'left middle right';
+}
+
+.left,
+.middle,
+.right {
+    padding: 0.25rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 0.5rem;
+    padding: 0 20px;
+}
+
+/* ========================================================================
+                          SEZIONE HEADER
+   ======================================================================== */
+
+header {
+    background: #E6BF8C;
+    border-radius: 0px 0px 20px 20px;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 5%;
+    transition: all 0.5s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.left_dragon,
+.right_dragon {
+    display: flex;
+}
+
+.logo-header {
+    display: flex;
+    height: auto;
+    width: auto;
+    max-width: 180px;
+    max-height: 200px;
+    transition: all 0.5s ease;
+}
+
+.logo-header:hover {
+    cursor: pointer;
+}
+
+/* ========================================================================
+                          NAVIGAZIONE
+   ======================================================================== */
+
+.container li a {
+    color: #8B0000;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+.container a:hover {
+    color: blue;
+}
+
+.navlinks li {
+    display: inline-block;
+}
+
+.navlinks li a,
+.dropbtn {
+    display: block;
+    color: #8B0000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: all 0.5s ease;
+}
+
+.navlinks a:hover,
+.dropdown:hover .dropbtn {
+    background-color: #8B0000;
+    color: white;
+}
+
+.navlinks .dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #E6BF8C;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #8B0000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #8B0000;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    transition: all 0.5s ease;
+}
+
+/* ========================================================================
+                          PULSANTE UTENTE
+   ======================================================================== */
+
+.user {
+    display: flex;
+    align-items: center;
+    background-color: orangered;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.5s ease;
+}
+
+.user i {
+    color: white;
+    font-size: 26px;
+    margin-right: 7px;
+}
+
+.user:hover {
+    background-color: #8B0000;
+}
+
+/* ========================================================================
+                                BREADCRUMB
+   ======================================================================== */
+
+.breadcrumb {
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: "›";
+    margin-left: 0.5rem;
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.breadcrumb a {
+    color: #2a5298;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb [aria-current="page"] {
+    color: #555;
+    font-weight: 500;
+}
+
+.headerpagina {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    font-size: 24px;
+}

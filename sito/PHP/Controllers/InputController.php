@@ -91,5 +91,20 @@ class InputController {
             http_response_code(500);
         }
     }
+
+    public static function validateDescription($description) {
+        try {
+            $description = self::sanitize($description);
+            InputValidator::validateDescription($description);
+            return $description;
+        } catch (DatabaseError $e) {
+            http_response_code(500);
+        } catch (InputError $e) {
+            http_response_code(400);
+        } catch (Exception $e) {
+            http_response_code(500);
+        }
 }
-?>
+
+}
+
