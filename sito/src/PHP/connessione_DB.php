@@ -8,7 +8,7 @@ class DBAccess
     private const DATABASE_NAME = "my_database";
     private const USERNAME = "local_user";
     private const PASSWORD = "password";
-
+    
     private static ?mysqli $connection = null;
 
     public static function getInstance(): mysqli
