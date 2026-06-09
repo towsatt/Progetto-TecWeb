@@ -1,6 +1,6 @@
 <?php
-include './html/registrazione.html';
-include 'connessione_DB.php';
+include '../html/registrazione.html';
+include '../connessione_DB.php';
 
 $message = "";
 $toastClass = "";
