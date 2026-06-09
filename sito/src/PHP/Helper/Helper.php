@@ -14,11 +14,11 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
     $content = str_replace("[DESCRIZIONE]", $descrizione, $content);
     $content = str_replace("[KEYWORDS]", $keywords, $content);
 
-    $home = "<a href=\"?page=home\"><span lang=\"en\">Home</span></a>";
-    $visualizza_campagne = "<a href=\"?page=lista_campagne\">Visualizza Campagne</a>";
-    $crea_campagna = "<a href=\"?page=crea_campagna\">Crea Campagna</a>";
+    $home = "<a href=\"/home\"><span lang=\"en\">Home</span></a>";
+    $visualizza_campagne = "<a href=\"/lista_campagne\">Visualizza Campagne</a>";
+    $crea_campagna = "<a href=\"/crea_campagna\">Crea Campagna</a>";
     $forum = ""; // <li><a href="./structure/forum.php"><span lang="en">Forum</span></a></li>
-    $about_us = "<li><a href=\"?page=su_di_noi\" type=\"info\">Info</a></li>";
+    $about_us = "<li><a href=\"/about_us\" type=\"info\">Info</a></li>";
     match ($source) {
         "home" => $home = "<p lang=\"en\">Home</p>",
         "mostra_campagne" => $visualizza_campagne = "<p>Visualizza Campagne</p>",
