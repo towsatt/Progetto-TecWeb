@@ -30,6 +30,5 @@ class DBAccess
         return self::$connection;
     }
 
-    // Rendere il costruttore private
     private function __construct() {}
 }
