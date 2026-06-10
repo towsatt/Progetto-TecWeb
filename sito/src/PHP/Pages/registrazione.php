@@ -1,50 +1,30 @@
 <?php
-include BASE_PATH . "/src/HTML/structure/registrazione.html";
-include BASE_PATH . "/src/PHP/connessione_DB.php";
+require_once BASE_PATH . "/src/PHP/Helper/Helper.php";
+require_once BASE_PATH . "/src/PHP/Controllers/AuthController.php";
+require_once BASE_PATH . "/src/PHP/Queries/Queries.php";
 
-$message = "";
-$toastClass = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$titolo = "Registrazione - Un1co";
+$descrizione = "Crea un account su Un1co per accedere a tutte le funzionalità del sito.";
+$keywords = "registrazione, un1co, account";
 
-    // Check if email already exists
-    $checkEmailStmt = $conn->prepare("SELECT email FROM userdata WHERE email = ?");
-    $checkEmailStmt->bind_param("s", $email);
-    $checkEmailStmt->execute();
-    $checkEmailStmt->store_result();
-    $checkUserStmt = $conn->prepare("SELECT username FROM userdata WHERE username = ?");
-    $checkUserStmt->bind_param("s", $username);
-    $checkUserStmt->execute();
-    $checkUserStmt->store_result();
+session_start();
 
-    
-    if(!empty($username) && !empty($password) && !empty($confirmPassword) && !empty($email)) {
-    // Il messaggio di errore deve vedersi tramite CSS nascosto    
-    if ($password !== $confirmPassword) {
-            $message = "Passwords do not match";
-        } else if ($checkEmailStmt->num_rows > 0) {
-            $message = "Email ID already exists";
-        } else if($checkUserStmt->num_rows > 0) {
-            $message = "Username already exists";
+$header = headerPlaceholder($titolo, $descrizione, $keywords, "registrazione");
+$page = file_get_contents(BASE_PATH . "/src/HTML/structure/registrazione.html");
+$footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
+
+
+if (!empty($_POST)) {
+    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+        if (registerUser($_POST['username'], $_POST['email'], $_POST['password'])) {
+            header("Location: login.php");
+            exit();
         } else {
-            $stmt = $conn->prepare("INSERT INTO userdata (username, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $email, $hashedPassword);
-            if ($stmt->execute()) {
-                $message = "Account created successfully";
-            } else {
-                $message = "Error: " . $stmt->error;
-            }
-            $stmt->close();
+            throw new InvalidParameterError("Registrazione fallita. Riprovare!");
         }
-    } else {
-        $message = "Some fields are empty";
     }
-
-    $checkEmailStmt->close();
-    $conn->close();
 }
+
+echo $header . $page . $footer;
+?>

@@ -23,6 +23,17 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
     $about_us = "<li><a href=\"/about_us\" type=\"info\">Info</a></li>";
     $logo = "<img src=\"/assets/imgs/header_e_footer/logo.png\" href=\"/\" alt=\"Logo\" width=\"90\" height=\"70\">";
     $breadcrumb = "<li>Home</li>\n<li><span aria-current=\"page\"></span></li>";
+    $login_register = "<button class=\"user\"><a href=\"/login\">Login/Registrati</a></button>";
+
+    if (isset($_SESSION['username'])) {
+        $profileImg = $_SESSION['profile_img'] ?? $_SESSION['avatar'] ?? null;
+        if ($profileImg) {
+            $profileImgEscaped = htmlspecialchars($profileImg, ENT_QUOTES, 'UTF-8');
+            $login_register = "<button class=\"user\"><a href=\"/area_personale\"><img src=\"{$profileImgEscaped}\" alt=\"Profilo\" width=\"28\" height=\"28\"> Area Personale</a></button>";
+        } else {
+            $login_register = "<button class=\"user\"><a href=\"/area_personale\">Area Personale</a></button>";
+        }
+    }
 
     switch ($source) {
         case "home":
@@ -40,9 +51,22 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
         // case "forum":
         //     $forum = "<p>Forum</p>";
         //     break;
-        case "su_di_noi":
-            $about_us = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
+        case "login":
+            $login_register = "<button class=\"user\">Sei nel login</button>";
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
             break;
+        case "registrazione":
+            $login_register = "<button class=\"user\">Sei nella registrazione</button>";
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
+            break;
+        case "su_di_noi":
+            $about_us = "<li>Info</li>";
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
+            break;
+        case "area_personale":
+            $login_register = "<button class=\"user\">Area Personale</button>";
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
+                break;
         default:
             break;
     };
@@ -54,5 +78,6 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
     $content = str_replace("[ABOUT_US]", $about_us, $content);
     $content = str_replace("[LOGO]", $logo, $content);
     $content = str_replace("[BREADCRUMB]", $breadcrumb, $content);
+    $content = str_replace("[LOGIN/REGISTER]", $login_register, $content);
     return $content;
 }

@@ -1,52 +1,35 @@
 <?php
 
-// require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'User.php';
+require_once __DIR__ . '/../Handlers/ErrorHandler.php';
+require_once __DIR__ . '/../Validators/InputValidator.php';
 
-// class AuthController
-// {
-//     public static function login(User $user)
-//     {
-//         $_SESSION['username'] = $user->getUsername();
-//         $_SESSION['password'] = $user->getPassword();
-//     }
+class AuthController {
+    public static function login($username, $password) {
+        try {
+            $username = InputController::validateUsername($username);
+            $password = InputController::validatePassword($password);
+            // Logica di autenticazione
+        } catch (DatabaseError $e) {
+            http_response_code(500);
+        } catch (InputError $e) {
+            http_response_code(400);
+        } catch (Exception $e) {
+            http_response_code(500);
+        }
+    }
 
-//     public static function logout()
-//     {
-//         session_destroy();
-//         header("Location: ../index.php");
-//         exit();
-//     }
-
-//     public static function isLogged(){
-//         return isset($_SESSION["username"]);
-//     }
-    
-//     public static function isAdmin(){
-//         if (!self::isLogged()){
-//             return false;
-//         }
-//         $user = UserController::getUserByUsername($_SESSION['username']);
-//         return $user->getIsAdmin();
-//     }
-
-//     public static function serverError()
-//     {
-//         http_response_code(500);
-//         $relativePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "HTML" . DIRECTORY_SEPARATOR . "structure" . DIRECTORY_SEPARATOR . "500.html";
-//         echo file_get_contents($relativePath);
-//         die();
-//     }
-
-//     public static function getAuthUser()
-//     {
-//         if(isset($_SESSION['username']))
-//         {
-//             $result = DBController::runQuery("SELECT * FROM utente WHERE username = ?", $_SESSION['username']);
-//             if($result !== false)
-//             {
-//                 return new User($result);
-//             }
-//         }
-//         return null;
-//     }
-// }
+    public static function register($email, $password, $username) {
+        try {
+            $email = InputController::validateEmail($email);
+            $password = InputController::validatePassword($password);
+            $username = InputController::validateUsername($username);
+            // Logica di registrazione
+        } catch (DatabaseError $e) {
+            http_response_code(500);
+        } catch (InputError $e) {
+            http_response_code(400);
+        } catch (Exception $e) {
+            http_response_code(500);
+        }
+    }
+}

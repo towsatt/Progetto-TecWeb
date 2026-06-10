@@ -38,6 +38,11 @@ class InputValidator
         if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
             throw new InputError("L'username può contenere solo lettere, numeri e underscore, e deve essere lungo tra i 3 e i 20 caratteri.");
         }
+
+        $len = strlen($username);
+        if ($len < 3 || $len > 30){
+            throw new InputError("L'username deve contenere tra 3 e 30 caratteri.");
+        }
     }
 
     public static function validateDescription(string $description): void

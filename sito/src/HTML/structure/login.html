@@ -1,26 +1,22 @@
-<body> 
+<main class="content"> 
     <form action="login.php" method="POST" id="form_login">
-        <div class="tab_nav" role="tablist">
-            <button class="tab_btn active" id="p_tab_login" role="tab" aria-selected="true"  onclick="window.location.href='login.html';">Accedi</button>
-            <button class="tab_btn"        id="p_tab_reg"   role="tab" aria-selected="false"  onclick="window.location.href='registrazione.html';">Registrati</button>
-        </div>
 
         <div class="panel active" id="p_panel_login">
             <div class="field_wrap">
-            <label for="p_uname"><strong><span lang="en">Username</span></strong> <span class="required_mark" aria-hidden="true">*</span></label>
-            <input type="text" id="p_uname" name="username" placeholder="Il tuo username">
+                <label for="p_uname"><strong><span lang="en">Username</span></strong> <span class="required_mark" aria-hidden="true">*</span></label>
+                <input type="text" id="p_uname" name="username" placeholder="Il tuo username">
             </div>
             <div class="field_wrap">
-            <label for="p_pwd"><strong><span lang="en">Password</span></strong> <span class="required_mark" aria-hidden="true">*</span></label>
-            <div class="input_row">
-                <input type="password" id="p_pwd" placeholder="La tua password">
-                <button type="button" class="eye_btn" aria-label="Mostra password" onclick="togglePwd('p_pwd',this)">👁</button>
-            </div>
+                <label for="p_pwd"><strong><span lang="en">Password</span></strong> <span class="required_mark" aria-hidden="true">*</span></label>
+                <div class="input_row">
+                    <input type="password" id="p_pwd" name="password" placeholder="La tua password">
+                    <button type="button" class="eye_btn" aria-label="Mostra password" onclick="togglePwd('p_pwd',this)">👁</button>
+                </div>
             </div>
             <div class="form_footer">
-            <button type="submit" class="btn_primary">Accedi</button>
-            <span class="switch_hint">Non hai un <span lang="en">account</span>? <a class="link" onclick="window.location.href='registrazione.html';">Registrati</a></span>
+                <button type="submit" value="submit" class="btn_primary">Accedi</button>
+                <span class="switch_hint">Non hai un <span lang="en">account</span>? <a class="link" href="registrazione">Registrati</a></span>
             </div>
         </div>
     </form>
-</body>
+</main>

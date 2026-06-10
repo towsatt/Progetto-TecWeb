@@ -7,6 +7,7 @@ const nicknameInput = document.getElementById('nickname');
 const passwordInput = document.getElementById('password');
 const emailInput = document.getElementById('email');
 const descriptionTextarea = document.getElementById('description');
+const togglePasswordBtn = document.getElementById('togglePasswordBtn');
 
 // Mappa dei campi
 const fieldsMap = {
@@ -15,6 +16,29 @@ const fieldsMap = {
     'email': emailInput,
     'description': descriptionTextarea
 };
+
+if (togglePasswordBtn) {
+    togglePasswordBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!passwordInput) {
+            return;
+        }
+
+        const isVisible = togglePasswordBtn.dataset.visible === 'true';
+        if (isVisible) {
+            passwordInput.type = 'password';
+            passwordInput.value = '********';
+            togglePasswordBtn.dataset.visible = 'false';
+            togglePasswordBtn.textContent = 'Mostra';
+        } else {
+            const realPassword = passwordInput.dataset.realPassword || '';
+            passwordInput.type = 'text';
+            passwordInput.value = realPassword ? realPassword : '********';
+            togglePasswordBtn.dataset.visible = 'true';
+            togglePasswordBtn.textContent = 'Nascondi';
+        }
+    });
+}
 
 let currentUsername = null;
 
@@ -76,14 +100,37 @@ function enableEditing(field, inputElement) {
                 return;
             }
 
-            if (field === 'nickname' && (newValue.length < 3 || newValue.length > 255)) {
-                showTemporaryMessage('Il nickname deve essere tra 3 e 255 caratteri', 'error');
+            if (field === 'nickname' && (newValue.length < 3 || newValue.length > 20)) {
+                showTemporaryMessage('Il nickname deve essere tra 3 e 20 caratteri', 'error');
                 return;
             }
 
-            if (field === 'password' && newValue.length > 0 && newValue.length < 4) {
-                showTemporaryMessage('La password deve essere di almeno 4 caratteri', 'error');
+            if (field === 'username' && (newValue.length < 3 || newValue.length > 20)) {
+                showTemporaryMessage('L\'username deve essere tra 3 e 20 caratteri e contenere solo lettere, numeri e underscore', 'error');
                 return;
+            }
+
+            if (field === 'password' && newValue.length > 0) {
+                // Validazione password: 12-24 caratteri, maiuscola, numero, carattere speciale
+                if (newValue.length < 12 || newValue.length > 24) {
+                    showTemporaryMessage('La password deve contenere tra 12 e 24 caratteri', 'error');
+                    return;
+                }
+                
+                if (!/[A-Z]/.test(newValue)) {
+                    showTemporaryMessage('La password deve contenere almeno una lettera maiuscola', 'error');
+                    return;
+                }
+                
+                if (!/[0-9]/.test(newValue)) {
+                    showTemporaryMessage('La password deve contenere almeno un numero', 'error');
+                    return;
+                }
+                
+                if (!/[^a-zA-Z0-9]/.test(newValue)) {
+                    showTemporaryMessage('La password deve contenere almeno un carattere speciale', 'error');
+                    return;
+                }
             }
 
             if (field === 'description' && newValue.length > 500) {
@@ -93,13 +140,14 @@ function enableEditing(field, inputElement) {
 
             // Invia al server
             try {
+                const payloadField = field === 'nickname' ? 'username' : field;
                 const response = await fetch('update_profile.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        field: field,
+                        field: payloadField,
                         value: newValue
                     })
                 });
@@ -111,7 +159,13 @@ function enableEditing(field, inputElement) {
 
                     // Aggiorna il valore visualizzato
                     if (field === 'password') {
+                        inputElement.dataset.realPassword = newValue;
+                        inputElement.type = 'password';
                         inputElement.value = '********';
+                        if (togglePasswordBtn) {
+                            togglePasswordBtn.dataset.visible = 'false';
+                            togglePasswordBtn.textContent = 'Mostra';
+                        }
                     } else if (field === 'nickname') {
                         inputElement.value = result.newValue;
                         currentUsername = result.newValue;

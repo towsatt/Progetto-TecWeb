@@ -1,11 +1,7 @@
-<body>
-  <form action="registrati.php" method="POST" id="form_reg">
-    <div class="panel" id="p_panel_reg">
-      <div class="tab_nav" role="tablist">
-        <button class="tab_btn active" id="p_tab_login" role="tab" aria-selected="false" onclick="window.location.href='login.html';">Accedi</button>
-        <button class="tab_btn"        id="p_tab_reg"   role="tab" aria-selected="true" onclick="window.location.href='registrazione.html';">Registrati</button>
-      </div>
-      <div class="panel">
+<main class="content">
+  <form action="/registrazione" method="POST" id="form_reg">
+    <div class="panel active" id="p_panel_reg">
+      <div class="panel active">
         <span class="required_note"><span class="required_mark" aria-hidden="true">*</span> Campo obbligatorio</span>
         <div class="field_wrap">
           <label for="p_runame"><strong>Username</strong> <span class="required_mark" aria-hidden="true">*</span></label>
@@ -33,9 +29,9 @@
         </div>
         <div class="form_footer">
           <button type="submit" class="btn_primary">Registrati</button>
-          <span class="switch_hint">Hai già un account? <a class="link" href="login.html">Accedi</a></span>
+          <span class="switch_hint">Hai già un account? <a class="link" href="/login">Accedi</a></span>
         </div>
       </div>
     </div>
   </form>
-</body>
+</main>

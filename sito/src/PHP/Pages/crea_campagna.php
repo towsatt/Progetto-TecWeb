@@ -11,6 +11,7 @@ $header = headerPlaceholder($titolo, $descrizione, $keywords, "crea_campagna");
 $page = file_get_contents(BASE_PATH . "/src/HTML/structure/crea_campagna.html");
 $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 
+
 $content = $header . str_replace("[CODICE_CAMPAGNA]", $password, $page) . $footer;
 
 echo $content;
