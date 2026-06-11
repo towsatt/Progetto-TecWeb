@@ -4,6 +4,7 @@ require_once BASE_PATH . "/src/PHP/Handlers/ErrorHandler.php";
 require_once BASE_PATH . "/src/PHP/Controllers/InputController.php";
 require_once BASE_PATH . "/src/PHP/connessione_DB.php";
 
+
 function searchByUsername(string $inputUsername = ""): ?array
 {
     if (!$inputUsername) {
@@ -35,38 +36,24 @@ function searchByUsername(string $inputUsername = ""): ?array
     }
 }
 
-function login(string $username, string $password): bool
-{
-    $query = "SELECT password FROM Utente WHERE username = ?";
-
-    try {
-        $connection = DBAccess::getInstance();
-        $stmt = $connection->prepare($query);
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows === 0) {
-            return false;
-        }
-
-        $row = $result->fetch_assoc();
-        return password_verify($password, $row['password']);
-    } catch (mysqli_sql_exception $e) {
-        error_log("Errore DB durante la conferma login: " . $e->getMessage());
-        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
-    }
-}
-
-function registerUser(string $email, string $password, string $username): bool
+function registerUser(string $email, string $password, string $username): bool | string
 {
     $query = "INSERT INTO Utente (email, password, username) VALUES (?, ?, ?)";
 
     try {
         $connection = DBAccess::getInstance();
+        if(emailExists($email)){
+            return "L'email che hai utilizzato già esiste!";
+        }
+
+        if(usernameExists($username)){
+            return "Lo username che hai utilizzato già esiste! Scelgline uno nuovo!";
+        }
+        
         $stmt = $connection->prepare($query);
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $stmt->bind_param('sss', $email, $hashedPassword, $username);
+
         return $stmt->execute();
     } catch (mysqli_sql_exception $e) {
         error_log("Errore DB durante la registrazione utente: " . $e->getMessage());
@@ -98,12 +85,8 @@ function emailExists(string $email): bool
 /**
  * Verifica se un username esiste già nel database (escludendo l'utente corrente)
  */
-function usernameExists(string $username, string $excludeUsername = null): bool
+function usernameExists(string $username): bool
 {
-    if ($excludeUsername === $username) {
-        return false;
-    }
-
     $query = "SELECT id FROM Utente WHERE username = ?";
 
     try {
@@ -173,3 +156,154 @@ function getUserData(string $username): ?array
         throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
     }
 }
+
+function setUserCampagna(string $nome_campagna, string $tipologia, string $durata, string $codice_campagna, string $password, string $descrizione, string $username): bool
+{
+    $query = "INSERT INTO Campagna (nome_campagna, tipologia, durata, codice_campagna, password, descrizione, username) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('sssssss', $nome_campagna, $tipologia, $durata, $codice_campagna, $password, $descrizione, $username);
+        return $stmt->execute();
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante l'aggiunta campagna: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore durante l'aggiunta della campagna.");
+    }
+}
+
+
+function getUserCampagne(string $username): ?array
+{
+    $query = "SELECT * FROM Membro WHERE utente = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento campagne utente: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+function getCampagnePubbliche(): ?array
+{
+    $query = "SELECT * FROM Campagna WHERE visibilita = 'true'";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento campagne pubbliche: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+function getCampagnaByCodice(string $codice_campagna): ?array
+{
+    $query = "SELECT * FROM Campagna WHERE codice_campagna = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_assoc();
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento campagna: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+function getUserCharacters(string $username): ?array
+{
+    $query = "SELECT p.*, c.nome as nome_campagna FROM Personaggio p 
+              JOIN Membro m ON p.codice_campagna = m.codice_campagna AND p.utente = m.utente
+              JOIN Campagna c ON p.codice_campagna = c.codice_campagna
+              WHERE p.utente = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento personaggi utente: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+function getSessioniByCampagna(string $codice_campagna): ?array
+{
+    $query = "SELECT * FROM Sessione WHERE codice_campagna = ? ORDER BY data ASC";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento sessioni: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+function getPersonaggiByCampagna(string $codice_campagna): ?array
+{
+    $query = "SELECT * FROM Personaggio WHERE codice_campagna = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento personaggi campagna: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+

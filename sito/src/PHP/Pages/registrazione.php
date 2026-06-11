@@ -17,11 +17,14 @@ $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 
 if (!empty($_POST)) {
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-        if (registerUser($_POST['username'], $_POST['email'], $_POST['password'])) {
+        $result = registerUser($_POST['username'], $_POST['email'], $_POST['password']);
+        if($result === "Registrazione eseguita"){
             header("Location: login.php");
             exit();
-        } else {
-            throw new InvalidParameterError("Registrazione fallita. Riprovare!");
+        }
+        else {
+            $errore = $result;
+            $page = str_replace("[ERRORE]", "<p>{$errore}</p>", $page);
         }
     }
 }

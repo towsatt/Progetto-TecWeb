@@ -1,21 +1,24 @@
-
-    <main>
-        <button id="crea-campagna-btn" onclick="window.location.href='/crea_campagna'">Crea Campagna</button>
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Cerca campagna..." onChange="cercaCampagna()">
-        </div>
-        <section id="campagne-list">
-            <p id="descrizione-campagne" class="visually-hidden">Questa tabella mostra le campagne disponibili.</p>
-            <table aria-describedby="descrizione-campagne">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome Campagna</th>
-                        <th scope="col">Tipologia</th>
-                        <th scope="col">Durata</th>
-                        <th scope="col">Descrizione</th>
-                    </tr>
-                </thead>
-            </table>
-        </section>
-    </main>
-    <script src="./js/cerca_utenti.js"></script>
+<main class="content">
+    <button id="crea-campagna-btn" onclick="window.location.href='/crea_campagna'">Crea Campagna</button>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Cerca campagna..." onchange="cercaCampagna()">
+    </div>
+    <section id="campagne-list">
+        <p id="descrizione-campagne" class="visually-hidden">Questa tabella mostra le campagne pubbliche e le campagne alle quali sei iscritto.</p>
+        <table aria-describedby="descrizione-campagne">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipologia</th>
+                    <th>Durata</th>
+                    <th>Descrizione</th>
+                    <th>Dungeon Master</th>
+                </tr>
+            </thead>
+            <tbody id="campagne-table-body">
+                {{CAMPAGNE_ROWS}}
+            </tbody>
+        </table>
+    </section>
+</main>
+<script src="./js/cerca_utenti.js"></script>
