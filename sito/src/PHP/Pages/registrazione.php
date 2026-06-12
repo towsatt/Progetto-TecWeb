@@ -15,16 +15,7 @@ $page = file_get_contents(BASE_PATH . "/src/HTML/structure/registrazione.html");
 $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 
 
-if (!empty($_POST)) {
-    if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-        if (registerUser($_POST['username'], $_POST['email'], $_POST['password'])) {
-            header("Location: login.php");
-            exit();
-        } else {
-            throw new InvalidParameterError("Registrazione fallita. Riprovare!");
-        }
-    }
-}
+AuthController::register($_POST['email'] ?? '', $_POST['password'] ?? '', $_POST['username'] ?? '');
 
 echo $header . $page . $footer;
 ?>
