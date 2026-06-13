@@ -1,3 +1,4 @@
+
 const profileCircle = document.getElementById('profileCircle');
 const profileImage = document.getElementById('profileImage');
 const fileInput = document.getElementById('fileInput');
@@ -80,7 +81,17 @@ function enableEditing(field, inputElement) {
         // Cambia l'icona del bottone
         const editBtn = document.querySelector(`.edit-btn[data-field="${field}"]`);
         if (editBtn) {
-            editBtn.innerHTML = '<img src="../assets/spunta.png" width="30" height="30">'; // Icona salva
+            //Aggiungi bottone per annullare le modifiche
+            const deleteChangesBtn = document.createElement('button');
+            deleteChangesBtn.className = 'delete-changes-btn';
+            deleteChangesBtn.innerHTML = '<img src="../imgs/area_personale/cancel_button.png" width="30" height="30">'; // Icona annulla
+            deleteChangesBtn.style.backgroundColor = '#f44336';
+            deleteChangesBtn.addEventListener('click', () => {
+                disableEditing(field, inputElement);
+            });
+            editBtn.parentNode.insertBefore(deleteChangesBtn, editBtn);
+            
+            editBtn.innerHTML = '<img src="../imgs/area_personale/spunta.png" width="30" height="30">'; // Icona salva
             editBtn.style.backgroundColor = '#4CAF50';
         }
 

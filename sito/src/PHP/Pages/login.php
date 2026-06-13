@@ -13,35 +13,19 @@ $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 
 session_start();
 
-
-if (!empty($_POST)) {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $query = "SELECT * FROM Utente WHERE username = ?";
-
-        try {
-            $connection = DBAccess::getInstance();
-            $stmt = $connection->prepare($query);
-            $stmt->bind_param('s', $_POST['username']);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            $user = $result->fetch_object();
-            if ($user && password_verify($_POST['password'], $user->password)) {  // ← CONTROLLO SU $user
-                $_SESSION['username'] = $user->username;
-                header("Location: area_personale.php");
-                exit();
-            }
-            else {
-                $errore = "<p>Credenziali non corrette! Riprova!</p>";
-                $page = str_replace("[ERRORE]", $errore, $page);
-            }
-        } catch (mysqli_sql_exception $e) {
-            error_log("Errore DB durante la conferma login: " . $e->getMessage());
-            throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
-        }
-    } 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(AuthController::login($_POST['username'] ?? '', $_POST['password'] ?? '')){
+        header("Location: /area-personale");
+        exit();
+    }else{
+        $errore = "<p>Credenziali non corrette! Riprova!</p>";
+        $page = str_replace("[ERRORE]", $errore, $page);
+    }
+}else{
+    $page = str_replace("[ERRORE]", "", $page);
 }
 
 
 $content = $header . $page . $footer;
 echo $content;
+?>

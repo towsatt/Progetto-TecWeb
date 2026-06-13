@@ -6,39 +6,37 @@
     require_once BASE_PATH . "/src/PHP/Controllers/AuthController.php";
     require_once BASE_PATH . "/src/PHP/Helper/Helper.php";
     require_once BASE_PATH . "/src/PHP/Queries/Queries.php";
-    require_once BASE_PATH . "/src/HTML/structure/area_personale.html";
-
     session_start();
-try{
-    if (isset($_SESSION['username'])) {
-        $page = file_get_contents(BASE_PATH . "/src/HTML/structure/area_personale.html");
-        //Cambia nickname sull'h1
-        $page = str_replace("[NICKNAME]", htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8'), $page);
+if (!isset($_SESSION['username'])) {
+    header("Location: /login");
+    exit();
+}
 
-        // Valorizza il campo nickname / username
-        $usernamePlaceholder = htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8');
-        $page = str_replace("[USERNAME]", "<input type=\"text\" id=\"nickname\" value=\"{$usernamePlaceholder}\" readonly disabled>", $page);
+try {
+    // Carica i dati dal database (solo una volta)
+    $userData = getUserData($_SESSION['username']);
+    if (!$userData) {
+        // Utente non trovato – distruggi sessione e reindirizza
+        session_destroy();
+        header("Location: /login");
+        exit();
+    }
 
-        //Cambia password con input disabilitato, modificabile solo tramite il pulsante "Modifica"
-        $passwordPlaceholder = htmlspecialchars($_SESSION['password'] ?? '', ENT_QUOTES, 'UTF-8');
-        $page = str_replace("[PASSWORD]", "<input type=\"password\" class=\"password-input\" id=\"password\" value=\"********\" data-real-password=\"{$passwordPlaceholder}\" readonly disabled>", $page);
+    $email = htmlspecialchars($userData['email'], ENT_QUOTES, 'UTF-8');
+    $username = htmlspecialchars($userData['username'], ENT_QUOTES, 'UTF-8');
+    $description = htmlspecialchars($userData['description'] ?? 'Descriviti! (max 500 caratteri)', ENT_QUOTES, 'UTF-8');
+    $profile_img = htmlspecialchars($userData['profile_img'] ?? '/assets/imgs/default_profile.png', ENT_QUOTES, 'UTF-8');
 
-        //Cambia descrizione con textarea disabilitato, modificabile solo tramite il pulsante "Modifica"
-        $descriptionPlaceholder = htmlspecialchars($_SESSION['description'] ?? '', ENT_QUOTES, 'UTF-8');
-        if ($descriptionPlaceholder === '') {
-            $descriptionPlaceholder = 'Descriviti! (max 500 caratteri)';
-        }
-        $page = str_replace("[DESCRIPTION]", "<textarea id=\"description\" maxlength=\"500\" rows=\"4\" readonly disabled>{$descriptionPlaceholder}</textarea>", $page);
+    // Leggi il template HTML
+    $page = file_get_contents(BASE_PATH . "/src/HTML/structure/area_personale.html");
 
-        // Valorizza il campo email
-        $emailPlaceholder = htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8');
-        $page = str_replace("[EMAIL]", "<input type=\"email\" id=\"email\" value=\"{$emailPlaceholder}\" maxlength=\"70\" readonly disabled>", $page);
-        if(isset($_SESSION['profile_img'])) {
-            $profileImgEscaped = htmlspecialchars($_SESSION['profile_img'], ENT_QUOTES, 'UTF-8');
-            $page = str_replace("[PROFILE_IMG]", "<img src=\"{$profileImgEscaped}\" alt=\"Profilo\" width=\"100\" height=\"100\">", $page);
-        } else {
-            $page = str_replace("[PROFILE_IMG]", "<img src=\"/assets/imgs/default_profile.png\" alt=\"Profilo\" width=\"100\" height=\"100\">", $page);
-        }
+    // Sostituisci i placeholder (usa sempre htmlspecialchars)
+    $page = str_replace("[NICKNAME]", $username, $page);
+    $page = str_replace("[USERNAME]", '<input type="text" id="nickname" value="' . $username . '" readonly disabled>', $page);
+    $page = str_replace("[PASSWORD]", '<input type="password" id="password" value="********" readonly disabled>', $page);
+    $page = str_replace("[EMAIL]", '<input type="email" id="email" value="' . $email . '" maxlength="70" readonly disabled>', $page);
+    $page = str_replace("[DESCRIPTION]", '<textarea id="description" maxlength="500" rows="4" readonly disabled>' . $description . '</textarea>', $page);
+    $page = str_replace("[PROFILE_IMG]", '<img src="' . $profile_img . '" alt="Foto Profilo" width="100" height="100">', $page);
 
         // Ottieni i personaggi dell'utente
         $personaggi = getUserCharacters($_SESSION['username']);
@@ -73,13 +71,9 @@ try{
     
         $content = $header . $page . $footer;
         echo $content;
-    } else {
-        header("Location: login.php");
+    } catch (Exception $e) {
+        header("Location: /500");
         exit();
     }
-} catch (Exception $e) {
-        header("Location: 500.php");
-        exit();
-}
 
 ?>

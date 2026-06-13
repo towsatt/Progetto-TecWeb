@@ -36,6 +36,28 @@ function searchByUsername(string $inputUsername = ""): ?array
     }
 }
 
+function login(string $username, string $password): bool
+{
+    $query = "SELECT * FROM Utente WHERE username = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $user = $result->fetch_object();
+        if ($user && password_verify($password, $user->password)) {
+            return true;
+        }
+        return false;
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il login: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
 function registerUser(string $email, string $password, string $username): bool | string
 {
     $query = "INSERT INTO Utente (email, password, username) VALUES (?, ?, ?)";
@@ -87,7 +109,7 @@ function emailExists(string $email): bool
  */
 function usernameExists(string $username): bool
 {
-    $query = "SELECT id FROM Utente WHERE username = ?";
+    $query = "SELECT username FROM Utente WHERE username = ?";
 
     try {
         $connection = DBAccess::getInstance();

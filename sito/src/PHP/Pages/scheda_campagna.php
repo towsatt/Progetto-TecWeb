@@ -16,21 +16,21 @@
     try{
             // Verifica se è stato passato il codice campagna
             if(!isset($_GET['codice']) || empty($_GET['codice'])){
-                header("Location: lista_campagne.php");
+                header("Location: /campagne");
                 exit();
             }
 
             // Validazione del codice campagna (formato: lettere maiuscole, underscore, numeri, max 16 caratteri)
             $codice_campagna = $_GET['codice'];
             if(!preg_match('/^[A-Z0-9_]{1,16}$/', $codice_campagna)){
-                header("Location: lista_campagne.php");
+                header("Location: /campagne");
                 exit();
             }
 
             $campagna = getCampagnaByCodice($codice_campagna);
 
             if(!$campagna){
-                header("Location: lista_campagne.php");
+                header("Location: /campagne");
                 exit();
             }
 
@@ -65,7 +65,7 @@
             // La visibilità nel database è un boolean (0/1 o true/false)
             $is_public = (bool)$campagna['visibilita'];
             if(!$is_member && !$is_dm && !$is_public){
-                header("Location: lista_campagne.php");
+                header("Location: /campagne");
                 exit();
             }
 
@@ -108,7 +108,7 @@
             }
             $page = str_replace("[PAGINAZIONE]", $paginazione_html, $page);
         } catch (Exception $e){
-            header("Location: 500.php");
+            header("Location: /500");
             exit();
         }
     

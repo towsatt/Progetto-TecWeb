@@ -20,7 +20,6 @@ $rowsHtml = '';
 
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-
     $campagne_user = getUserCampagne($username);
     if($campagne_user && count($campagne_user) > 0) {
         foreach($campagne_user as $campagna_user){
@@ -55,6 +54,8 @@ if ($campagne && count($campagne) > 0 ) {
 } else {
     $rowsHtml = '<tr><td colspan="5">Nessuna campagna pubblica disponibile al momento.</td></tr>';
 }
+} catch (Exception $e) {
+    $rowsHtml = '<tr><td colspan="5">Errore nel caricamento delle campagne.</td></tr>';
 }
 // Sostituisci il placeholder con le righe generate
 $page = str_replace('{{CAMPAGNE_ROWS}}', $rowsHtml, $page);

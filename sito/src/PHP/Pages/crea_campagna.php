@@ -1,6 +1,6 @@
 <?php
 require_once BASE_PATH . "/src/PHP/Helper/Helper.php";
-require_once BASE_PATH . "src/HTML/structure/crea_campagna.html";
+require_once BASE_PATH . "/src/PHP/Queries/Queries.php";
 
 $titolo = 'Pagina di creazione campagna';
 $descrizione = 'Crea la tua campagna personalizzata e inizia a giocare con i tuoi amici!';
