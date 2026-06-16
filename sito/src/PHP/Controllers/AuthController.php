@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../Handlers/ErrorHandler.php';
 require_once __DIR__ . '/../Validators/InputValidator.php';
+require_once __DIR__ . '/../Queries/Queries.php';
 
 class AuthController
 {
@@ -11,16 +12,8 @@ class AuthController
             $username = InputController::validateUsername($username);
             $password = InputController::validatePassword($password);
             if (!empty($_POST)) {
-                if (isset($_POST['username']) && isset($_POST['password'])) {
-                    if (login($_POST['username'], $_POST['password'])) {
-                        $_SESSION['username'] = $_POST['username'];
-                        header("Location: area_personale.php");
-                        exit();
-                    } else {
-                        // Forse è meglio senza eccezione
-                        throw new InvalidParameterError("Credenziali non corrette. Riprovare!");
-                    }
-                }
+                if (isset($_POST['username']) && isset($_POST['password'])) 
+                    return login($_POST['username'], $_POST['password']);
             }
         } catch (DatabaseError $e) {
             http_response_code(500);
@@ -40,7 +33,7 @@ class AuthController
             if (!empty($_POST)) {
                 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
                     if (registerUser($_POST['username'], $_POST['email'], $_POST['password'])) {
-                        header("Location: login.php");
+                        header("Location: /login");
                         exit();
                     } else {
                         throw new InvalidParameterError("Registrazione fallita. Riprovare!");

@@ -202,11 +202,11 @@ INSERT INTO Amici (user1, user2) VALUES
 -- 2. POPOLAMENTO TABELLA CAMPAGNA (5 Campagne)
 -- ============================================================================
 INSERT INTO Campagna (codice_campagna, nome, tipologia, durata, descrizione, dungeon_master, visibilita) VALUES
-('CAMP01_CRIMSON', 'La Maledizione di Crimson', 'Originale', 'A Sessioni', 'Una campagna epica nel continente dimenticato di Crimson Valley.', 'DungeonMaster1', 1),
-('CAMP02_DRAGON', 'Il Risveglio dei Draghi', 'Esistente', 'A Sessioni', 'Adattamento ufficiale della celebre avventura sui draghi cromatici.', 'DungeonMaster2', 1),
-('CAMP03_UNDER', 'I Segreti del Sottosuolo', 'Originale', 'A Sessioni', 'Esplorazione e sopravvivenza nelle caverne più profonde del mondo.', 'DungeonMaster3', 0),
-('CAMP04_SHADOW', 'L''Ombra di Vecna', 'Esistente', 'A Sessioni', 'I giocatori dovranno impedire il ritorno del potente arcilich.', 'DungeonMaster4', 1),
-('CAMP05_EBERR', 'Incursione a Sharn', 'Originale', 'A Sessioni', 'Intrighi politici e investigazione cyberpunk-fantasy nella città delle torri.', 'DungeonMaster5', 1);
+('CAMP01_CRIMSON', 'La Maledizione di Crimson', 'Originale', 'A Sessioni', 'Una campagna epica nel continente dimenticato di Crimson Valley.', 'DungeonMaster1', "true"),
+('CAMP02_DRAGON', 'Il Risveglio dei Draghi', 'Esistente', 'A Sessioni', 'Adattamento ufficiale della celebre avventura sui draghi cromatici.', 'DungeonMaster2', "true"),
+('CAMP03_UNDER', 'I Segreti del Sottosuolo', 'Originale', 'A Sessioni', 'Esplorazione e sopravvivenza nelle caverne più profonde del mondo.', 'DungeonMaster3', "false"),
+('CAMP04_SHADOW', 'L''Ombra di Vecna', 'Esistente', 'A Sessioni', 'I giocatori dovranno impedire il ritorno del potente arcilich.', 'DungeonMaster4', "true"),
+('CAMP05_EBERR', 'Incursione a Sharn', 'Originale', 'A Sessioni', 'Intrighi politici e investigazione cyberpunk-fantasy nella città delle torri.', 'DungeonMaster5', "true");
 
 -- ============================================================================
 -- 3. POPOLAMENTO TABELLA MEMBRO (5 Giocatori per Campagna)
