@@ -10,12 +10,12 @@ $routes = [
     '/crea_campagna'  => 'crea_campagna.php',
     '/creazione_personaggio' => 'creazione_personaggio.php',
     '/campagne' => 'lista_campagne.php',
-    '/dettaglio_campagna' => 'dettaglio_campagna.php',
     '/home'=> 'home.php',
     '/login' => 'login.php',
     '/registrazione' => 'registrazione.php',
+    '/scheda_campagna' => 'scheda_campagna.php',
+    '/scheda_sessione' => 'scheda_sessione.php',
     '/about_us' => 'su_di_noi.php',
-
 ];
 
 // Logica di routing

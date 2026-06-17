@@ -1,27 +1,47 @@
         <!-- Main/Contenuto -->
-        <main class="scheda_campagna">
+        <main class="content">
             <!-- Gruppo bottoni elimina modifica -->
-            <div id="buttons"> 
-                <button type="button" id="modifica" aria-readonly="true"><strong>Modifica</strong></button> <!-- sarebbe type="submit" ?? -->
-                <button type="button" id="elimina" aria-readonly="true"><strong>Elimina</strong></button> <!-- visibile solo da admin-->
+            <div id="buttons"> <!-- Visibili solo da master -->
+                <button type="button" id="modifica" aria-readonly="true"><strong>Modifica</strong></button>
+                <button type="button" id="elimina" aria-readonly="true"><strong>Elimina</strong></button>
             </div>
-            <!-- Nome Campagna - Sessione x -->
-            <h1>[NOME_CAMPAGNA] - Sessione [NUM_SESSIONE]</h1> <!-- Prendere il valore dal db -->
-            <!-- Descrizione della Sessione -->
-            <div class="block" id="descrizione_sessione"> <!-- Prendere il valore dal db -->
-                <h2>Descrizione della Sessione</h2>
-                [DESCRIZIONE]
-            </div>
-            <!-- Scheda del Personaggio -->
-            <div class="block" id="scheda_personaggio">  <!-- Prendere il valore dal db -->
-                <h2>Scheda del Personaggio</h2>
-                <ul> <!-- il PHP popola questa lista con i personaggi della sessione -->
-                    [Personaggi]
-                </ul>
+            <!-- Nome Campagna -->
+            <h1>[NOME_CAMPAGNA]</h1> <!-- Prendere il valore dal db -->
+            <!-- Dettagli della Campagna -->
+            <div class="block" id="dettagli"> <!-- Prendere i valori dal db -->
+                <h2>Dettagli della Campagna</h2>
+                <dl>
+                    <dt><strong>Tipologia</strong></dt>
+                    <dd>[TIPOLOGIA]</dd>
 
+                    <dt><strong>Durata</strong></dt>
+                    <dd>[DURATA]</dd>
+
+                    <dt><strong>Codice Campagna</strong></dt>
+                    <dd>[CODICE_CAMPAGNA]</dd>
+
+                    <dt><strong lang="en">Password</strong></dt>
+                    <dd>[PASSWORD]</dd>
+
+                    <dt><strong>Descrizione</strong></dt>
+                    <dd>[DESCRIZIONE]</dd>
+                </dl>
             </div>
-            <!-- Pagination -->
-            <ul id="pagination"> <!-- Da sistemare, dipende dal numero di sessioni -->
-                [PAGINAZIONE]
-            </ul>
+            <!-- Membri -->
+            <div class="block" id="membri"> <!-- Prendere il numero dei giocatori dal db -->
+                <button type="button"><strong>Invita</strong></button> 
+                <h2>Membri</h2>
+                <ul>
+                    <li>[DUNGEON_MASTER]</li>
+                    <li>[MEMBRI]</li>
+                </ul>
+            </div>
+            <!-- Sessioni -->
+            <div class="block" id="sessioni"> <!-- Prendere il numero di sessioni dal db -->
+                 <h2>Sessioni</h2>
+                 <ul>
+                    <li>[SESSIONI]</li>
+                </ul>
+            </div>
+
         </main>

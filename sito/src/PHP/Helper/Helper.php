@@ -67,6 +67,12 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
             $login_register = "<button class=\"user\">Area Personale</button>";
             $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><span aria-current=\"page\"></span></li>";
                 break;
+        case "scheda_campagna":
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><a href=\"/campagne\">Visualizza Campagne</a></li>\n<li>Scheda Campagna</li>\n<li><span aria-current=\"page\"></span></li>";
+                break;
+        case "scheda_sessione":
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><a href=\"/campagne\">Visualizza Campagne</a></li>\n<li><a href=\"/scheda_campagna\">Scheda Campagna</a></li>\n<li>Scheda Sessione</li>\n<li><span aria-current=\"page\"></span></li>";
+                break;
         default:
             break;
     };

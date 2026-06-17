@@ -15,7 +15,7 @@ $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 session_start();
 try{
 if(!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: /login");
     exit();
 }
 

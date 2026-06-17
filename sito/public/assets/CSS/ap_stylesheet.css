@@ -545,7 +545,7 @@ footer > p {
 }
 
 #footer_contatti li {
-    margin-left: 1em;
+    margin-top: 1em;
 }
 
 /* ========================================================================
@@ -679,7 +679,7 @@ footer > p {
     #footer_titolo img {
         vertical-align: middle;
         height: 90px;
-        width: 150px;
+        width: 90px;
         margin: 1em 0em;
     }
 
