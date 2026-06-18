@@ -16,6 +16,7 @@ $routes = [
     '/scheda_campagna' => 'scheda_campagna.php',
     '/scheda_sessione' => 'scheda_sessione.php',
     '/about_us' => 'su_di_noi.php',
+    '/test' => 'test.php'
 ];
 
 // Logica di routing

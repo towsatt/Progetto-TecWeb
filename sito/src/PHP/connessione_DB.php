@@ -5,9 +5,9 @@ include_once BASE_PATH . "/src/PHP/Controllers/InputController.php";
 class DBAccess
 {
     private const HOST_DB = "db";
-    private const DATABASE_NAME = "my_database";
     private const USERNAME = "local_user";
     private const PASSWORD = "password";
+    private const DATABASE_NAME = "my_database";
     
     private static ?mysqli $connection = null;
 

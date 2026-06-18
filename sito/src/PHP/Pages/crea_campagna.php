@@ -15,7 +15,7 @@ $footer = file_get_contents(BASE_PATH . "/src/HTML/template/footer.html");
 session_start();
 try{
 if(!isset($_SESSION['username'])) {
-    header("Location: /login");
+    header("Location: login");
     exit();
 }
 
@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($result) {
         // Campagna creata con successo
         //Reindirizzata alla pagina per vedere la campagna
-        header("Location: /campagna.php");
+        header("Location: /dettaglio_campagna");
         exit();
     }
 }
