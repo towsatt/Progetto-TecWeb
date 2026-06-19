@@ -69,7 +69,7 @@ function registerUser(string $email, string $password, string $username): bool |
         }
 
         if(usernameExists($username)){
-            return "Lo username che hai utilizzato già esiste! Scelgline uno nuovo!";
+            return "Lo username che hai utilizzato già esiste! Scegline uno nuovo!";
         }
         
         $stmt = $connection->prepare($query);
@@ -195,7 +195,7 @@ function setUserCampagna(string $nome_campagna, string $tipologia, string $durat
 }
 
 
-function getUserCampagne(string $username): ?array
+function getUserCampagne(string $username): ?array 
 {
     $query = "SELECT * FROM Membro WHERE utente = ?";
 
@@ -209,7 +209,6 @@ function getUserCampagne(string $username): ?array
         if ($result->num_rows === 0) {
             return null;
         }
-
         return $result->fetch_all(MYSQLI_ASSOC);
     } catch (mysqli_sql_exception $e) {
         error_log("Errore DB durante il caricamento campagne utente: " . $e->getMessage());
@@ -219,7 +218,7 @@ function getUserCampagne(string $username): ?array
 
 function getCampagnePubbliche(): ?array
 {
-    $query = "SELECT * FROM Campagna WHERE visibilita = 'true'";
+    $query = "SELECT * FROM Campagna WHERE visibilita = true"; //boolean: true, not 'true' / "true"
 
     try {
         $connection = DBAccess::getInstance();
@@ -241,7 +240,6 @@ function getCampagnePubbliche(): ?array
 function getCampagnaByCodice(string $codice_campagna): ?array
 {
     $query = "SELECT * FROM Campagna WHERE codice_campagna = ?";
-
     try {
         $connection = DBAccess::getInstance();
         $stmt = $connection->prepare($query);
@@ -329,3 +327,24 @@ function getPersonaggiByCampagna(string $codice_campagna): ?array
     }
 }
 
+function getMembriByCampagna(string $codice_campagna): ?array
+{
+    $query = "SELECT utente FROM Membro WHERE codice_campagna = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('s', $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento dei membri della campagna: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
