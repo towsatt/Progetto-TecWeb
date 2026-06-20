@@ -348,3 +348,87 @@ function getMembriByCampagna(string $codice_campagna): ?array
         throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
     }
 }
+
+//verificare se con quel codice campagna esiste il membro con quell'utente, se esiste allora ritorna true altrimenti false
+function isUserMemberOfCampagna(string $username, string $codice_campagna): bool
+{
+    $query = "SELECT * FROM Membro WHERE utente = ? AND codice_campagna = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('ss', $username, $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->num_rows > 0;
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il controllo membro campagna: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+
+//verificare se con quel codice utente e quel codice campagna, è un dungeon master, se lo è ritorna true altrimenti false
+function isUserDungeonMaster(string $username, string $codice_campagna): bool
+{
+    $query = "SELECT * FROM Membro WHERE utente = ? AND codice_campagna = ? AND ruolo = 'dungeon_master'";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('ss', $username, $codice_campagna);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->num_rows > 0;
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il controllo dungeon master: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+//verificare se il personaggio esiste già per quell'utente e quella campagna, se esiste ritorna true altrimenti false
+function personaggioExist(string $campagna_id,string $user_id): bool
+{
+    $query = "SELECT * FROM Personaggio WHERE campagna_id = ? AND user_id = ?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('ss', $campagna_id, $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->num_rows > 0;
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il controllo personaggio: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
+//inserire realmente il personaggio nel db
+function setCharacter(string $campagna_id,string $user_id, string $namech, string $classe, string $razza, string $eta, string $altezza, string $peso, string $occhi, string $carnagione, string $capelli, string $aspetto, string $aleorg, string $storia, string $lp, string $forza, string $destrezza, string $costit, string $intel, string $sagg, string $carisma, string $ispiraz, string $bdcomp, string $percpas, string $valuta, string $clarm, string $speed, string $dadivita, string $maxptifer,string $incantesimi): bool
+{
+    $query = "INSERT INTO Personaggio (campagna_id, user_id, namech, classe, razza, eta, altezza, peso, occhi, carnagione, capelli, aspetto, aleorg, storia, lp, forza, destrezza, costit, intel, sagg, carisma, ispiraz, bdcomp, percpas, valuta, clarm, speed, dadivita, maxptifer, incantesimi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    try {
+        $connection = DBAccess::getInstance();
+        if(personaggioExist($campagna_id,$user_id)){
+            return "Il personaggio l'hai già creato per questa campagna!";
+        }
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('ssssssssssssssssssssssssssssss', $campagna_id, $user_id, $namech, $classe, $razza, $eta, $altezza, $peso, $occhi, $carnagione, $capelli, $aspetto, $aleorg, $storia, $lp, $forza, $destrezza, $costit, $intel, $sagg, $carisma, $ispiraz, $bdcomp, $percpas, $valuta, $clarm, $speed, $dadivita, $maxptifer, $incantesimi);
+        return $stmt->execute();
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante la creazione del personaggio: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore durante la creazione del personaggio.");
+    }
+}
+
+function createCharacter(string $user_id, string $campagna_id, string $namech, string $classe, string $razza, string $eta, string $altezza, string $peso, string $occhi, string $carnagione, string $capelli, string $aspetto, string $aleorg, string $storia, string $lp, string $forza, string $destrezza, string $costit, string $intel, string $sagg, string $carisma, string $ispiraz, string $bdcomp, string $percpas, string $valuta, string $clarm, string $speed, string $dadivita, string $maxptifer,string $incantesimi): bool
+{
+    try {
+        return setCharacter($user_id,$campagna_id,$namech,$classe,$razza,$eta,$altezza,$peso,$occhi,$carnagione,$capelli,$aspetto,$aleorg,$storia,$lp,$forza,$destrezza,$costit,$intel,$sagg,$carisma,$ispiraz,$bdcomp,$percpas,$valuta,$clarm,$speed,$dadivita,$maxptifer,$incantesimi);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante la creazione del personaggio: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore durante la creazione del personaggio.");
+    }
+}

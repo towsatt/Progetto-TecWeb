@@ -45,7 +45,7 @@ create table Personaggio (
     codice_campagna varchar(16) not null,
     utente varchar(255) not null,
     nome varchar(255) not null,
-    classe ENUM('Barbaro', 'Bardo', 'Chierico', 'Druido', 'Guerriero', 'Ladro', 'Mago', 'Monaco', 'Paladino', 'Ranger', 'Sacerdote', 'Warlock') not null,
+    classe ENUM('Barbaro', 'Bardo', 'Chierico', 'Druido', 'Guerriero', 'Ladro', 'Mago', 'Monaco', 'Paladino', 'Ranger', 'Stregone', 'Warlock') not null,
     razza ENUM('Dragonide', 'Elfo', 'Gnomo', 'Hafling', 'Mezzelfo', 'Mezzorco', 'Tiefling', 'Umano') not null,
     livello int not null default 1,
     eta int,
