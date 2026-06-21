@@ -88,7 +88,7 @@ function registerUser(string $email, string $password, string $username): bool |
  */
 function emailExists(string $email): bool
 {
-    $query = "SELECT id FROM Utente WHERE email = ?";
+    $query = "SELECT username FROM Utente WHERE email = ?";
 
     try {
         $connection = DBAccess::getInstance();
@@ -159,7 +159,7 @@ function updateUserProfile(string $username, string $field, string $value): bool
  */
 function getUserData(string $username): ?array
 {
-    $query = "SELECT username, email, description FROM Utente WHERE username = ?";
+    $query = "SELECT username, email FROM Utente WHERE username = ?";
 
     try {
         $connection = DBAccess::getInstance();
@@ -179,20 +179,20 @@ function getUserData(string $username): ?array
     }
 }
 
-function setUserCampagna(string $nome_campagna, string $tipologia, string $durata, string $codice_campagna, string $password, string $descrizione, string $username): bool
-{
-    $query = "INSERT INTO Campagna (nome_campagna, tipologia, durata, codice_campagna, password, descrizione, username) VALUES (?, ?, ?, ?, ?, ?, ?)";
+// function setUserCampagna(string $nome_campagna, string $tipologia, string $durata, string $codice_campagna, string $password, string $descrizione, string $username): bool
+// {
+//     $query = "INSERT INTO Campagna (nome_campagna, tipologia, durata, codice_campagna, password, descrizione, username) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    try {
-        $connection = DBAccess::getInstance();
-        $stmt = $connection->prepare($query);
-        $stmt->bind_param('sssssss', $nome_campagna, $tipologia, $durata, $codice_campagna, $password, $descrizione, $username);
-        return $stmt->execute();
-    } catch (mysqli_sql_exception $e) {
-        error_log("Errore DB durante l'aggiunta campagna: " . $e->getMessage());
-        throw new DatabaseError("Si è verificato un errore durante l'aggiunta della campagna.");
-    }
-}
+//     try {
+//         $connection = DBAccess::getInstance();
+//         $stmt = $connection->prepare($query);
+//         $stmt->bind_param('sssssss', $nome_campagna, $tipologia, $durata, $codice_campagna, $password, $descrizione, $username);
+//         return $stmt->execute();
+//     } catch (mysqli_sql_exception $e) {
+//         error_log("Errore DB durante l'aggiunta campagna: " . $e->getMessage());
+//         throw new DatabaseError("Si è verificato un errore durante l'aggiunta della campagna.");
+//     }
+// }
 
 
 function getUserCampagne(string $username): ?array 
@@ -218,7 +218,7 @@ function getUserCampagne(string $username): ?array
 
 function getCampagnePubbliche(): ?array
 {
-    $query = "SELECT * FROM Campagna WHERE visibilita = true"; //boolean: true, not 'true' / "true"
+    $query = "SELECT * FROM Campagna WHERE visibilita = 'true'";
 
     try {
         $connection = DBAccess::getInstance();
