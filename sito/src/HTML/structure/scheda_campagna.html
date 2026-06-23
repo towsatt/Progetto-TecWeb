@@ -1,14 +1,14 @@
-        <!-- Main/Contenuto -->
-        <main class="content">
+<!-- Main/Contenuto -->
+        <main class="scheda_campagna">
             <!-- Gruppo bottoni elimina modifica -->
-            <div id="buttons"> <!-- Visibili solo da master -->
-                <button type="button" id="modifica" aria-readonly="true"><strong>Modifica</strong></button>
-                <button type="button" id="elimina" aria-readonly="true"><strong>Elimina</strong></button>
+            <div id="buttons">
+                <button type="button" id="modifica" aria-readonly="true" disabled><strong>Modifica</strong></button>
+                <button type="button" id="elimina" aria-readonly="true" disabled><strong>Elimina</strong></button>
             </div>
             <!-- Nome Campagna -->
-            <h1>[NOME_CAMPAGNA]</h1> <!-- Prendere il valore dal db -->
+            <h1>[NOME_CAMPAGNA]</h1>
             <!-- Dettagli della Campagna -->
-            <div class="block" id="dettagli"> <!-- Prendere i valori dal db -->
+            <div class="block" id="dettagli">
                 <h2>Dettagli della Campagna</h2>
                 <dl>
                     <dt><strong>Tipologia</strong></dt>
@@ -28,20 +28,20 @@
                 </dl>
             </div>
             <!-- Membri -->
-            <div class="block" id="membri"> <!-- Prendere il numero dei giocatori dal db -->
-                <button type="button"><strong>Invita</strong></button> 
+            <div class="block" id="membri">
+                <button type="button" disabled><strong>Invita</strong></button> 
                 <h2>Membri</h2>
                 <ul>
-                    <li>[DUNGEON_MASTER]</li>
-                    <li>[MEMBRI]</li>
+                    [DUNGEON_MASTER]
+                    [MEMBRI]
                 </ul>
             </div>
             <!-- Sessioni -->
-            <div class="block" id="sessioni"> <!-- Prendere il numero di sessioni dal db -->
-                 <h2>Sessioni</h2>
-                 <ul>
+            <div class="block" id="sessioni">
+                <button type="button" disabled><strong>Aggiungi</strong></button> 
+                <h2>Sessioni</h2>
+                <ul>
                     <li>[SESSIONI]</li>
                 </ul>
             </div>
-
         </main>

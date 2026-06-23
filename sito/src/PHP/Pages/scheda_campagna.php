@@ -34,18 +34,27 @@
             }
             
             // Verifica se l'utente è membro della campagna o è il dungeon master
-            $username = $_SESSION['username'];
-            $is_member = false;
-            $is_dm = ($campagna['dungeon_master'] === $username);
-
-            $user_campagne = getUserCampagne($username);
-            if($user_campagne){
-                foreach($user_campagne as $uc){
-                    if($uc['codice_campagna'] === $codice_campagna) {
-                        $is_member = true;
-                        break;
+            if(isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+                $is_member = false;
+                $is_dm = ($campagna['dungeon_master'] === $username);
+                
+                if(!$is_dm) {
+                    $user_campagne = getUserCampagne($username);
+                    if($user_campagne) {
+                        foreach($user_campagne as $uc) {
+                            if($uc['codice_campagna'] === $codice_campagna) {
+                                $is_member = true;
+                                break;
+                            }
+                        }
                     }
                 }
+            }
+            else { //nel caso $_SESSION['username'] non sia ancora dichiarata, da sistemare
+                $username = null;
+                $is_member = null;
+                $is_dm = null;
             }
             
             // Se non è membro e non è il DM, e la campagna non è pubblica, reindirizza
@@ -55,8 +64,12 @@
                 header("Location: /campagne");
                 exit();
             }
-            
 
+            //Se è DM, i tasti di elimina, modifica, invita, aggiungi sono utilizzabili
+            if($is_dm) {
+                $page = str_replace("disabled", "", $page);
+            }
+            
             // Popola i placeholder nella pagina
             $page = str_replace("[NOME_CAMPAGNA]", htmlspecialchars($campagna['nome'], ENT_QUOTES, 'UTF-8'), $page);
             $page = str_replace("[TIPOLOGIA]", htmlspecialchars($campagna['tipologia'], ENT_QUOTES, 'UTF-8'), $page);
@@ -69,13 +82,13 @@
             $membri = getMembriByCampagna($codice_campagna);
 
             // Popola il blocco di Membri
-            $dm_html = '<li>' . htmlspecialchars($campagna['dungeon_master'], ENT_QUOTES, 'UTF-8') . '</li>';
+            $dm_html = '<li>' . htmlspecialchars($campagna['dungeon_master'], ENT_QUOTES, 'UTF-8') . ' - Dungeon Master</li>';
             $page = str_replace("[DUNGEON_MASTER]", $dm_html, $page);
 
             $membri_html = "";
             if($membri && count($membri) > 0) {
                 foreach($membri as $mb) {
-                    $membri_html .= '<li>' . htmlspecialchars($mb['utente'], ENT_QUOTES, 'UTF-8') . '</li>';
+                    $membri_html .= '<li>' . htmlspecialchars($mb['utente'], ENT_QUOTES, 'UTF-8') . ' - ' . htmlspecialchars($mb['nome'], ENT_QUOTES, 'UTF-8') . '</li>';
                 }
             }
             else {
@@ -95,6 +108,7 @@
                     $bloccoSessioni_html .= '<li' . '><a href="/scheda_sessione?codice=' . urlencode($codice_campagna) . '&sessione=' . $i . '">' . 'Sessione ' . $i . '</a></li>';
                 }
             }
+            
             $page = str_replace("[SESSIONI]", $bloccoSessioni_html, $page);
 
         } catch (Exception $e){

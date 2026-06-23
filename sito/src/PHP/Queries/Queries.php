@@ -329,8 +329,7 @@ function getPersonaggiByCampagna(string $codice_campagna): ?array
 
 function getMembriByCampagna(string $codice_campagna): ?array
 {
-    $query = "SELECT utente FROM Membro WHERE codice_campagna = ?";
-
+    $query = "SELECT utente, nome FROM Personaggio WHERE codice_campagna = ?";
     try {
         $connection = DBAccess::getInstance();
         $stmt = $connection->prepare($query);

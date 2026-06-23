@@ -47,18 +47,27 @@
             }
             
             // Verifica se l'utente è membro della campagna o è il dungeon master
-            $username = $_SESSION['username'];
-            $is_member = false;
-            $is_dm = ($campagna['dungeon_master'] === $username);
-
-            $user_campagne = getUserCampagne($username);
-            if($user_campagne){
-                foreach($user_campagne as $uc){
-                    if($uc['codice_campagna'] === $codice_campagna){
-                        $is_member = true;
-                        break;
+            if(isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+                $is_member = false;
+                $is_dm = ($campagna['dungeon_master'] === $username);
+                
+                if(!$is_dm) {
+                    $user_campagne = getUserCampagne($username);
+                    if($user_campagne) {
+                        foreach($user_campagne as $uc) {
+                            if($uc['codice_campagna'] === $codice_campagna) {
+                                $is_member = true;
+                                break;
+                            }
+                        }
                     }
                 }
+            }
+            else { //nel caso $_SESSION['username'] non sia ancora dichiarata, da sistemare
+                $username = null;
+                $is_member = null;
+                $is_dm = null;
             }
 
             // Se non è membro e non è il DM, e la campagna non è pubblica, reindirizza
@@ -69,22 +78,26 @@
                 exit();
             }
 
+            //Se è DM, i tasti di elimina e modifica sono utilizzabili
+            if($is_dm) {
+                $page = str_replace("disabled", "", $page);
+            }
+
             // Ottieni i personaggi della campagna
             $personaggi = getPersonaggiByCampagna($codice_campagna);
 
             // Popola i placeholder nella pagina
             $page = str_replace("[NOME_CAMPAGNA]", htmlspecialchars($campagna['nome'], ENT_QUOTES, 'UTF-8'), $page);
             $page = str_replace("[NUM_SESSIONE]", $sessione_corrente, $page);
-
-            // Popola la descrizione della sessione corrente
-            $descrizione_sessione = "";
-            if($sessioni && count($sessioni) > 0){
+            
+            // Popola la descrizione e la data della sessione corrente
+            if($sessioni && count($sessioni) > 0) {
                 $index = $sessione_corrente - 1;
-                if(isset($sessioni[$index])){
-                    $descrizione_sessione = htmlspecialchars($sessioni[$index]['descrizione'], ENT_QUOTES, 'UTF-8');
+                if(isset($sessioni[$index])) {
+                    $page = str_replace("[DESCRIZIONE]", htmlspecialchars($sessioni[$index]['descrizione'], ENT_QUOTES, 'UTF-8'), $page);
+                    $page = str_replace("[DATA]", htmlspecialchars($sessioni[$index]['data'], ENT_QUOTES, 'UTF-8'), $page);
                 }
             }
-            $page = str_replace("[DESCRIZIONE]", $descrizione_sessione, $page);
 
             // Popola la lista dei personaggi
             $personaggi_html = "";
@@ -100,14 +113,25 @@
 
             // Popola la paginazione
             $paginazione_html = "";
-            if($sessioni && count($sessioni) > 0){
+            if($sessioni && count($sessioni) > 0) {
                 $totale_sessioni = count($sessioni);
-                for($i = 1; $i <= $totale_sessioni; $i++){
-                    $active_class = ($i === $sessione_corrente) ? ' class="active"' : '';
-                    $paginazione_html .= '<li' . $active_class . '><a href="/scheda_sessione?codice=' . urlencode($codice_campagna) . '&sessione=' . $i . '">' . $i . '</a></li>';
+                //aggiunta before
+                if($sessione_corrente !== 1) {
+                    $paginazione_html .= '<li> <a href="/scheda_sessione?codice=' . urlencode($codice_campagna) . '&sessione=' . $sessione_corrente-1 . '"> &laquo; </a></li>';
+                }
+                //aggiunta "numeri"
+                for($i = 1; $i <= $totale_sessioni; $i++) {
+                    $active = ($i === $sessione_corrente) ? ' aria-disabled = "true" tabindex = "-1"' : '';
+                    $paginazione_html .= '<li> <a' . $active . ' href="/scheda_sessione?codice=' . urlencode($codice_campagna) . '&sessione=' . $i . '">' . $i . '</a></li>';
+                }
+                //aggiunta next
+                if($sessione_corrente !== $totale_sessioni) {
+                    $paginazione_html .= '<li> <a href="/scheda_sessione?codice=' . urlencode($codice_campagna) . '&sessione=' . $sessione_corrente+1 . '"> &raquo; </a></li>';
                 }
             }
+
             $page = str_replace("[PAGINAZIONE]", $paginazione_html, $page);
+
         } catch (Exception $e){
             header("Location: /500");
             exit();
