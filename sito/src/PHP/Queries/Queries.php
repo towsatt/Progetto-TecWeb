@@ -218,7 +218,7 @@ function getUserCampagne(string $username): ?array
 
 function getCampagnePubbliche(): ?array
 {
-    $query = "SELECT * FROM Campagna WHERE visibilita = 'true'";
+    $query = "SELECT * FROM Campagna WHERE visibilita = true";
 
     try {
         $connection = DBAccess::getInstance();

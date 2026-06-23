@@ -71,7 +71,7 @@ function headerPlaceholder(string $titolo, string $descrizione, string $keywords
             $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><a href=\"/campagne\">Visualizza Campagne</a></li>\n<li>Scheda Campagna</li>\n<li><span aria-current=\"page\"></span></li>";
                 break;
         case "scheda_sessione":
-            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><a href=\"/campagne\">Visualizza Campagne</a></li>\n<li><a href=\"/scheda_campagna\">Scheda Campagna</a></li>\n<li>Scheda Sessione</li>\n<li><span aria-current=\"page\"></span></li>";
+            $breadcrumb = "<li><a href=\"/home\">Home</a></li>\n<li><a href=\"/campagne\">Visualizza Campagne</a></li>\n<li><a href=\"/scheda_campagna?codice=" . urlencode($_GET['codice']) . "\">Scheda Campagna</a></li>\n<li>Scheda Sessione</li>\n<li><span aria-current=\"page\"></span></li>";
                 break;
         default:
             break;

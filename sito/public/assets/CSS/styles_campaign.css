@@ -1,314 +1,187 @@
-* { /**/ 
-    margin: 0em;
-    padding: 0em;
-}
+/*both*/
 
-:root { /*inserire variabili in futuro*/
-    --txtColor: #FFFFFF;
-}
+    main h1 {
+        padding: 0.5em;
+        margin: 0.5em 0.2em;
+    }
 
-body {
-    font-family: Arial, sans-serif;;
-    line-height: 1.5em; /* interlinea accessibile */
-    background-color: #f5f5f5;
-}
+    #buttons {
+        padding: 1em;
+        margin: 1em 0.4em;
+        grid-area: gb;
+    }
 
-/*
-==============
-SEZIONE HEADER
-==============
-*/
+    #buttons > button {
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 1em;
+        float: right;
+        color: var(--txtColor);
+        padding: 0.7em 1em;
+        margin: 0em 0.5em;
+        color: white;
+    }
 
-header {
-    background-color: red;
-    color: var(--txtColor);
-}
+    #buttons > button:disabled {
+        cursor: default;
+        background-color: grey;
+        /*display: none;*/
+    }
 
-header ul {
-    width: 100%;
-    overflow: hidden; /* i li non escono più da ul con float */
-}
+    #elimina {
+        background-color: red;
+    }
 
-header li {
-    width: 25%;
-    float: left;
-    list-style-type: none; /* toglie i punti dagli elementi*/
-}
+    #elimina:hover:enabled {
+        background-color: darkred;
+    }
 
-header li a {
-    padding: 0.5em 0em; /* top-bottom and left-right*/
-    font-size: 1.2em; /* si può togliere/cambiare*/
-    text-align: center;
-    display: block;
-    text-decoration: none; /* toglie sottolineature*/
-}
+    #modifica {
+        background-color: blue;
+    }
 
-header li a:hover {
-    background-color: darkred;
-}
+    #modifica:hover:enabled {
+        background-color: darkblue;
+    }
 
-header li a:link {
-    color: var(--txtColor);
-}
+    .block {
+        background-color: lightgray;
+        padding: 1em;
+        margin: 1em;
+        border-radius: 8px; /*angoli arrotondati*/
+    }
 
-header li a:visited {
-    color: var(--txtColor);
-}
+    .block h2 {
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid black;
+    }
 
-/*
-==================
-SEZIONE BREADCRUMB
-==================
-*/
+    .block button {
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 1em;
+        background-color: lightgray;
+        margin: 0.5em 0.2em;
+        float: right;
+        color: blue;
+    }
 
-#breadcrumb {
-    background-color: gray;
-    color: var(--txtColor);
-    border-style: groove;
-    border-color: #000000;
-    padding: 0.2em 1em;
-}
+    .block button:disabled {
+        cursor: default;
+        color: grey;
+        /*display: none;*/
+    }
 
-#breadcrumb li {
-    display: inline;
-}
+    /*scheda_campagna*/
 
-#breadcrumb li a{
-    color: greenyellow;
-    text-decoration: none; /* no underline */
-}
+    .scheda_campagna {
+        display: grid;
+        grid-template-areas: 
+        "h gb" 
+        "de me" 
+        "de se";
+        grid-template-rows: auto;
+        grid-template-columns: 50%;
+    }
 
-#breadcrumb li+li:before { /*quando ci sono due li di fila, mette prima del secondo li*/
-    padding: 0.5em;
-    content: ">";
-}
+    .scheda_campagna > h1 {
+        grid-area: h;
+    }
 
-/*
-=============
-SEZIONE MAIN
-=============
-*/
+    #dettagli {
+        grid-area: de;
+    }
 
-main {
-    display: grid;
-    max-width: 70%;
-    margin: auto; /*centra il blocco*/
-    background-color: antiquewhite;
-}
+    #membri {
+        grid-area: me;
+    }
 
-main h1 {
-    padding: 0.5em;
-    margin: 0.5em 0.2em;
-    grid-area: h;
-}
+    #sessioni {
+        grid-area: se;
+    }
+    
+    #membri ul, #sessioni ul { /* considerare se tenere lo scroll solo per le sessioni, o se togliere tutto*/
+        overflow: scroll; /*in caso di tanti elementi hanno una scroll bar*/
+    }
 
-button {
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 1em;
-}
+    #membri li, #sessioni li {
+        margin-left: 1em;
+        padding-top: 0.5em;
+    }
 
-#buttons {
-    padding: 0.5em;
-    margin: 0.5em 0.2em;
-    grid-area: gb;
-}
+    #dettagli dt {
+        padding-top: 0.5em;
+    }
 
-#buttons button {
-    float: right;
-    color: var(--txtColor);
-    padding: 0.7em 1em;
-    margin: 0em 0.5em;
-}
+    /*scheda sessione*/
 
-#buttons #elimina {
-    background-color: red;
-}
+    .scheda_sessione {
+        display: grid;
+        grid-template-areas: 
+        "h gb" 
+        "ds dt" 
+        "ds sp"
+        "pg pg";
+        grid-template-rows: auto;
+        grid-template-columns: 50%;
+    }
 
-#buttons #elimina:hover {
-    background-color: darkred;
-}
+    .scheda_sessione > h1 {
+        grid-area: h;
+    }
 
-#buttons #modifica {
-    background-color: blue;
-}
+    #descrizione_sessione {
+        grid-area: ds;
+    }
 
-#buttons #modifica:hover {
-    background-color: darkblue;
-}
+    #data_sessione {
+        grid-area: dt;
+    }
 
-.block {
-    background-color: lightgray;
-    padding: 1em;
-    margin: 1em;
-    border-radius: 8px; /*angoli arrotondati*/
-}
+    #scheda_personaggio {
+        grid-area: sp;
+    }
 
-.block h2 {
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid black;
-}
+    #pagination {
+        grid-area: pg;
+    }
 
-/*
-==============
-SEZIONE FOOTER
-==============
-*/
+    #descrizione_sessione > p {
+        font-size: 1.1em;
+        padding-top: 0.5em;
+    }
 
-footer {
-    padding: 2em 0em;
-    background-color: rgb(36, 36, 36);
-    color: var(--txtColor);
-    font-size: 0.85em;
-}
+    #scheda_personaggio li {
+        margin-left: 1em;
+        padding-top: 0.5em;
+    }
 
-#footer_container {
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    max-width: 50%;
-}
+    #pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin: 1em;
+        padding: 1em;
+    }
 
-#footer_titolo {
-    display: flex;
-    flex-direction: column;
-}
+    #pagination li a {
+        display: block; /* let links fill the list item */
+        padding: 8px 12px;
+        text-decoration: none;
+        border: 1px solid gray;
+        color: black;  
+        margin: 0 4px;
+        border-radius: 5px; /* add rounded borders */
+        background-color: lightgray;
+    }
 
-#footer_titolo h3 {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
-}
+    #pagination li a:hover {
+        background-color: gray;
+    }
 
-footer #logo {
-    vertical-align: middle;
-    width: 180px;
-    height: 60px;
-    margin: 1em 0em;
-}
-
-#footer_contatti {
-    width: 30%;
-}
-
-#footer_contatti p {
-    border-bottom: 1px solid white;
-    padding: 1em 0em 0em 0.5em;
-    margin-bottom: 0.5em;
-}
-
-#footer_contatti ul {
-    margin-left: 1em;
-}
-
-#footer_contatti li{
-    margin-left: 1em;
-}
-
-/*
-=============
-VIEW CAMPAGNA
-=============
-*/
-
-#view_campagna {
-    grid-template-areas: 
-    "h gb" 
-    "de me" 
-    "de se";
-    grid-template-rows: auto;
-    grid-template-columns: 50%;
-}
-
-#dettagli {
-    grid-area: de;
-}
-
-#membri {
-    grid-area: me;
-}
-
-#sessioni {
-    grid-area: se;
-}
-
-#membri ul, #sessioni ul { /* considerare se tenere lo scroll solo per le sessioni, o se togliere tutto*/
-    overflow: scroll; /*in caso di tanti elementi hanno una scroll bar*/
-}
-
-#membri li, #sessioni li {
-    margin-left: 1em;
-    padding-top: 0.5em;
-}
-
-#membri button{
-    background-color: lightgray;
-    margin-right: 0.5em;
-    float: right;
-    color: blue;
-}
-
-#dettagli dt {
-    padding-top: 0.5em;
-}
-
-/*
-===============
-SCHEDA CAMPAGNA
-===============
-*/
-
-#scheda_campagna {
-    grid-template-areas: 
-    "h gb" 
-    "ds sp" 
-    "ds ."
-    "pg pg";
-    grid-template-rows: auto;
-    grid-template-columns: 50%;
-}
-
-#descrizione_sessione {
-    grid-area: ds;
-}
-
-#scheda_personaggio {
-    grid-area: sp;
-}
-
-#pagination {
-    grid-area: pg;
-}
-
-#descrizione_sessione p {
-    padding-top: 0.5em;
-}
-
-#scheda_personaggio li {
-    margin-left: 1em;
-    padding-top: 0.5em;
-}
-
-#pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: 1em;
-    padding: 1em;
-}
-
-#pagination li a {
-    display: block; /* let links fill the list item */
-    padding: 8px 12px;
-    text-decoration: none;
-    border: 1px solid gray;
-    color: black;  
-    margin: 0 4px;
-    border-radius: 5px; /* add rounded borders */
-    background-color: lightgray;
-}
-
-#pagination li a:hover {
-    background-color: gray;
-}
+    #pagination li a[aria-disabled="true"] {
+        color: grey;
+        pointer-events: none;
+    }
