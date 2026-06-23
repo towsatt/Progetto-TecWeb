@@ -432,3 +432,28 @@ function createCharacter(string $user_id, string $campagna_id, string $namech, s
         throw new DatabaseError("Si è verificato un errore durante la creazione del personaggio.");
     }
 }
+
+//prendre personaggio con cod campagna e id utente
+function getPersonaggioByCodici(string $codice_campagna,string $id_utente): ?array
+{
+    $query = "SELECT * FROM Personaggio WHERE codice_campagna = ? && id_utente=?";
+
+    try {
+        $connection = DBAccess::getInstance();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param('ss', $codice_campagna, $id_utente);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 0) {
+            return null;
+        }
+        if ($result->num_rows > 1) {
+            throw new DatabaseError("Risultato non univoco: trovati più personaggi per gli stessi codici.");
+        }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } catch (mysqli_sql_exception $e) {
+        error_log("Errore DB durante il caricamento del personaggio: " . $e->getMessage());
+        throw new DatabaseError("Si è verificato un errore nel caricamento dei dati.");
+    }
+}
